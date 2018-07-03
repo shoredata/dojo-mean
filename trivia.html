@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Trivia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+        function showDetails(answer) {
+            if (answer.getAttribute("datacorrect")=="true") {
+                answer.style.backgroundColor = 'lightgreen';
+            }
+            else{
+                answer.style.backgroundColor = 'red';
+            }
+        }
+    </script>
+
+    <script>
+
+
+        function shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+        }
+
+
+
+        $(document).ready(function(){
+
+            var trv;
+            $.get("https://opentdb.com/api.php?amount=10", function(data){     
+                trv = data;
+                console.log("TRIVIA: ", trv);     
+
+                for (c in trv){
+                    var cat = trv[c];
+                    var i = 0;
+                    for (item in cat){
+                        i += 1;
+                        var itm = cat[item]
+                        // console.log("\nCREATE CATEGORY DIV");
+
+                        var sname = "cat" + i.toString();
+
+
+                        // if there is a problem UNCOMMENT THIS ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        // console.log(itm);
+
+
+
+                        var sheadtext = itm['category'] + " [" + itm['difficulty']  + "]  " + itm['question'];
+                        // console.log(sheadtext)
+
+                        var sheaddiv = "<div class='cat' id='" + sname + "'>";
+                        // console.log(sheaddiv)
+
+                        $('#trivia').append(sheaddiv + sheadtext + "</div>");  
+
+                        var ismult = itm['type'] == "multiple";
+                        var isbool = itm['type'] == "boolean";
+                        if (isbool){
+                            // console.log("T/F")
+                            var smyheaddiv = "<div class='cat' id='" + sname + "_t'";
+                            if (itm['correct_answer'] == "True") {
+                                smyheaddiv += " datacorrect='true' ";
+                            }
+                            else
+                            {
+                                smyheaddiv += " datacorrect='false' ";
+                            }
+                            smyheaddiv += " onclick='showDetails(this)' >";
+                            $("#" + sname).append(smyheaddiv + "  TRUE" + "</div>");  
+
+                            smyheaddiv = "<div class='cat' id='" + sname + "_f'";
+                            if (itm['correct_answer'] == "False") {
+                                smyheaddiv += " datacorrect='true' ";
+                            }
+                            else
+                            {
+                                smyheaddiv += " datacorrect='false' ";
+                            }
+                            smyheaddiv += " onclick='showDetails(this)' >";
+                            $("#" + sname).append(smyheaddiv + "  FALSE" + "</div>");  
+                        }
+                        else if (ismult){
+                            // console.log("Multiple Choice")
+                            var myarr = []
+                            
+                            // $("#" + sname).append("</ul>");  
+                            for (var ans in itm['incorrect_answers']){
+                                var smyheaddiv = "<div class='cat' id='" + sname + "_ans'";
+                                smyheaddiv += " datacorrect='false' ";
+                                smyheaddiv += " onclick='showDetails(this)' >";
+                                myarr.push(smyheaddiv + itm['incorrect_answers'][ans] + "</div>");
+                            }
+                            smyheaddiv = "<div class='cat' id='" + sname + "_ans'";
+                            smyheaddiv += " datacorrect='true' ";
+                            smyheaddiv += " onclick='showDetails(this)' >";
+                            myarr.push(smyheaddiv + smyheaddiv + itm['correct_answer'] + "</div>");
+
+                            myarr = shuffle(myarr);
+
+                            for (var item in myarr){
+                                $("#" + sname).append(myarr[item]);
+                            }  
+                        }
+                        else{
+                            console.log("HELP ME, UNKNOWN TYPE!!!")
+
+                        }
+
+                        for (fld in itm){
+                            // ans += 1;
+                            var field = itm[fld]
+                            // console.log(fld + "  :  " +field);
+                            // $('#cat" + i.toString() + "').append("<div id='" + i.toString() + "_ans" + ans.toString() + "'>" + field + "</div>");  
+                        };
+                        $("#" + sname).append("<hr>");  
+
+                    };
+                };
+            });
+
+
+        }); 
+
+
+
+    </script>
+
+
+</head>
+<body>
+
+    <div id="trivia">
+    </div>
+
+</body>
+</html>

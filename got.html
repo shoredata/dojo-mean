@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>GOT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <!-- <script src="main.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+
+        function showHouse(house) {
+            obj = house.getAttribute("housedata");
+            console.log(obj);
+            getHouse();
+        }
+
+        var got;
+        var myhouse; 
+
+        function getHouse(){
+            myhouse = Math.floor((Math.random() * 400) + 1);
+            $.get("https://anapioficeandfire.com/api/houses/" + myhouse.toString() + "?callback=?", function(data){     
+                got = data;
+                console.log("HOUSE " + myhouse.toString() + ":", got);     
+                $('#info').empty();
+
+                $('#info').append("<div>" + got['name'] + "</div>");
+                $('#info').append("<div>" + got['coatOfArms'] + "</div>");
+                $('#info').append("<div>" + got['region'] + "</div>");
+
+            }); 
+        }
+
+        $(document).ready(function(){
+            getHouse();
+        }); 
+
+    </script>
+
+
+
+</head>
+<body>
+    <img src="img/baratheon.png" alt="baratheon" width="200" height="200" onclick='showHouse(this)' housedata="baratheon">
+    <img src="img/lannister.jpg" alt="lannister" width="200" height="200" onclick='showHouse(this)' housedata="lannister">
+    <img src="img/stark.jpg" alt="stark" width="200" height="200" onclick='showHouse(this)' housedata="stark">
+    <img src="img/targaryen.jpg" alt="targaryen" width="200" height="200" onclick='showHouse(this)' housedata="targaryen">
+
+    <div id="info"></div>
+</body>
+</html>

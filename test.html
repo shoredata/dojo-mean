@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <!-- <script src="jsobjs.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+    <script>
+        // assuming you have jQuery
+        $(document).ready(function(){
+
+            // var favoritePokemon;
+            // // the given link is for Bulbasaur's information
+            // $.get("https://pokeapi.co/api/v2/pokemon/1/", function(data){     
+            //     favoritePokemon = data.name;
+            //     console.log("Got my favorite Pokemon", favoritePokemon);      // Predict the output!
+            // });
+
+            var myname  = "";
+            $.get("https://api.github.com/users/shoredata", displayName);
+            // Notice that displayName is a function that takes in 1 parameter 
+            // (this is the data that comes back from the API)
+
+            function displayName(data) {
+                console.log(data);
+                myname = data;
+                console.log(myname);
+            }
+
+            // Your objective is to create a button that, when clicked, will send an API request to the 
+            // GitHub API (see above) and will display your name in a tag below the button via DOM manipulation.
+
+            $( "#target" ).click(function() {
+                console.log( "Handler for .click() called." );
+                document.getElementById("other").innerText = myname['name'];
+            });
+
+
+            // {
+            // "login": "shoredata",
+            // "id": 31630233,
+            // "node_id": "MDQ6VXNlcjMxNjMwMjMz",
+            // "avatar_url": "https://avatars1.githubusercontent.com/u/31630233?v=4",
+            // "gravatar_id": "",
+            // "url": "https://api.github.com/users/shoredata",
+            // "html_url": "https://github.com/shoredata",
+            // "followers_url": "https://api.github.com/users/shoredata/followers",
+            // "following_url": "https://api.github.com/users/shoredata/following{/other_user}",
+            // "gists_url": "https://api.github.com/users/shoredata/gists{/gist_id}",
+            // "starred_url": "https://api.github.com/users/shoredata/starred{/owner}{/repo}",
+            // "subscriptions_url": "https://api.github.com/users/shoredata/subscriptions",
+            // "organizations_url": "https://api.github.com/users/shoredata/orgs",
+            // "repos_url": "https://api.github.com/users/shoredata/repos",
+            // "events_url": "https://api.github.com/users/shoredata/events{/privacy}",
+            // "received_events_url": "https://api.github.com/users/shoredata/received_events",
+            // "type": "User",
+            // "site_admin": false,
+            // "name": "Bart Schaefer",
+            // "company": null,
+            // "blog": "",
+            // "location": "Seattle, WA",
+            // "email": null,
+            // "hireable": null,
+            // "bio": null,
+            // "public_repos": 39,
+            // "public_gists": 2,
+            // "followers": 0,
+            // "following": 0,
+            // "created_at": "2017-09-04T17:58:38Z",
+            // "updated_at": "2018-06-24T04:43:26Z"
+            // }
+
+
+        }); 
+</script>
+    
+</head>
+<body>
+    Testing ...
+    <div id="target">
+        Click here
+    </div>
+    <div id="other">
+        Trigger the handler
+    </div>
+</body>
+</html>
