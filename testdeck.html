@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <script src="deckofcards.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+    <script>
+
+        function getBustedDiv() {
+            return "<div>BUSTED</div>";
+        }
+        function getBlackJackDiv() {
+            return "<div>DUDE NO - - YOU HAVE BLACKJACK</div>";
+        }
+        function get21Div() {
+            return "<div> === 21 !!! ===</div>";
+        }
+        function getWaitingDiv() {
+            return "<div> WAITING FOR PLAYERS TO STAY! </div>";
+        }
+
+        var playersready = 0;
+        var players = [];
+        var d1 = new Deck();
+        var busted = [false, false, false, false];
+
+        function handleCards(clickedcard) {
+            if (clickedcard.getAttribute("playerAction")=="hit") {
+                clickedcard.style.backgroundColor = 'lightgreen';
+                var ip = parseInt(clickedcard.getAttribute("playerNumber"));
+
+                if (playersready<3 && ip ==4) {                    
+                    $("#p" + ip.toString()).append(getWaitingDiv);  
+                }
+                else
+                {
+
+                    console.log(players[ip].getScore());
+                    if (players[ip].getScore() > 21) {
+                        $("#p" + ip.toString()).append(getBustedDiv);  
+                        busted[ip] = true;
+                    }
+                    else {
+
+                        if (players[ip].getScore() == 11  && players[ip].hasAce()) {
+                            $("#p" + ip.toString()).append(getBlackJackDiv);  
+                        }
+                        else if (players[ip].getScore() == 21) {
+                            $("#p" + ip.toString()).append(get21Div);  
+                        }
+                        else {
+
+                            players[ip].drawCard(d1);
+                            var ic = players[ip].cards.length-1;
+                            var thisdiv = getCardDiv(players[ip].cards[ic], ic, ip, players[ip].getScore());
+                            console.log(thisdiv);
+                            $("#p" + ip.toString()).append(thisdiv);  
+
+                            console.log(players[ip].getScore());
+                            if (players[ip].getScore() > 21) {
+                                $("#p" + ip.toString()).append(getBustedDiv);  
+                                busted[ip] = true;
+                            }
+                            else if (players[ip].getScore() == 11  && players[ip].hasAce()) {
+                                $("#p" + ip.toString()).append(getBlackJackDiv);  
+                            }
+                            else if (players[ip].getScore() == 21) {
+                                $("#p" + ip.toString()).append(get21Div);  
+                            }
+
+                        }
+                    }
+                }
+
+
+
+
+
+            }
+            else{
+                playersready++;
+                clickedcard.style.backgroundColor = 'red';
+            }
+            if (playersready==3) {
+                //when 3rd player is ready then do the deed
+                $("#p4").append(" <<< PLEASE WAIT >>> ");
+            }
+        }
+
+
+        function getCardDiv(card, hit=0, player, score){
+            var sreturn = "";
+            // console.log(card);
+            sreturn += "<div class = 'card' id='card_" + card.suitidx +"_" + card.valueidx+ "' ";
+            sreturn += " onclick='handleCards(this)' playerNumber='" + player.toString() + "' ";
+            if (hit==0) {
+                sreturn += " playerAction='hit' > HIT .... " + score.toString() + " .... "; 
+            }
+            else {
+                sreturn += " playerAction='stay' > STAY .... " + score.toString() + " .... ";
+            }
+            sreturn += card.desc + "</div>";
+            return sreturn;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $(document).ready(function(){
+
+
+            for (var i=0; i<4; i++) {
+                var p = new Player("Player " + i.toString(), []);
+                p.drawCard(d1);
+                p.drawCard(d1);
+                p.showHand();
+                players.push(p);
+            }
+            // d1.showDeck();
+            // console.log(players);
+
+
+            // <img src="img/baratheon.png" alt="baratheon" width="200" height="200" onclick='showHouse(this)' housedata="baratheon">
+
+            for (var i=1; i<=players.length; i++) {
+                for (var j=0; j<=players[0].cards.length-1; j++) {
+                    // console.log(players[i-1].cards[j].desc);
+                    var thisdiv = getCardDiv(players[i-1].cards[j], j, i-1, players[i-1].getScore());
+                    // console.log(thisdiv);
+                    $("#p" + i.toString()).append(thisdiv);  
+                }
+                $("#p" + i.toString()).append("<hr>");
+            }
+
+
+
+        }); 
+
+
+
+    
+    </script>
+    
+
+
+
+    
+</head>
+<body>
+
+    <div id="wrapper">
+        <div id="p0">LETS PLAY BLACKJACK<br><br></div>
+        <div id="p1">Player 1</div>
+        <div id="p2">Player 2</div>
+        <div id="p3">Player 3</div>
+        <div id="p4">DEALER</div>
+    </div>
+
+</body>
+</html>
