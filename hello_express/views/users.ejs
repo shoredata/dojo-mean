@@ -1,0 +1,38 @@
+<!-- The <% %> tags are the delimiter for the embedded JavaScript.  
+    Using these tags allows us to run JavaScript code that can be 
+    embedded into the HTML document we are making.  
+    Notice the <% %> tags allow us to enter JavaScript code, 
+    and the <%=  %> tags actually print the JavaScript code to the document.  
+    This is a key difference.   
+    
+    You'll use the tags with the equal sign (=) to actually print values, 
+    whereas you'll use the tags without the equals sign to invoke loops or 
+    use logic (anything that involves JavaScript but doesn't output code).  
+    Embedded JavaScript should be pretty quick to get up and running 
+    out of the box.  Play around with it and move on when you're ready!! -->
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="/styles/main.css">
+</head>
+
+<html>
+<body>
+    <h2>Here are all the users:</h2>
+    <% for (var x in users) { %>
+        <h3>Name: <%= users[x].name %></h3>
+        <h4>Email: <%= users[x].email %></h4>
+        <hr>
+    <% } %>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+    <!-- NOPE this needs to be in the header to use jquery in the header -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    
+    </body>
+</html>

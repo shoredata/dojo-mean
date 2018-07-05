@@ -83,7 +83,7 @@ var server = http.createServer(function (request, response){
         // notice we won't include the utf8 encoding
         fs.readFile('./images/lambo.png', function(errors, contents){
             if (errors) { console.log(errors); }
-            response.writeHead(200, {'Content-type': 'image/png'});
+            response.writeHead(200, {'Content-type': 'image/jpg'});
             response.write(contents);
             response.end();
         })
