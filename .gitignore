@@ -1,3 +1,5 @@
 *.pyc
 /cards-png/*
 /cards-png/
+bower_components
+node_modules

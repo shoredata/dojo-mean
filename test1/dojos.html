@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <!-- <script src="jsobjs.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+
+    <!-- <link rel="stylesheet" type="text/css" href="theme.css"> -->
+
+    <script>
+        // assuming you have jQuery
+        $(document).ready(function(){
+
+            // var favoritePokemon;
+            // // the given link is for Bulbasaur's information
+            // $.get("https://pokeapi.co/api/v2/pokemon/1/", function(data){     
+            //     favoritePokemon = data.name;
+            //     console.log("Got my favorite Pokemon: ", favoritePokemon);      // Predict the output!
+            // });
+
+            // var myname  = "";
+            // $.get("https://api.github.com/users/shoredata", displayName);
+            // // Notice that displayName is a function that takes in 1 parameter 
+            // // (this is the data that comes back from the API)
+            // function displayName(data) {
+            //     // console.log(data);
+            //     myname = data;
+            //     console.log("GitHub Username: ", myname.login);
+            // }
+
+            // Your objective is to create a button that, when clicked, will send an API request to the 
+            // GitHub API (see above) and will display your name in a tag below the button via DOM manipulation.
+
+            // $( "#target" ).click(function() {
+            //     console.log( "Handler for .click() called." );
+            //     document.getElementById("other").innerText = myname['name'];
+            // });
+
+
+            // {
+            // "login": "shoredata",
+            // "id": 31630233,
+            // "node_id": "MDQ6VXNlcjMxNjMwMjMz",
+            // "avatar_url": "https://avatars1.githubusercontent.com/u/31630233?v=4",
+            // "gravatar_id": "",
+            // "url": "https://api.github.com/users/shoredata",
+            // "html_url": "https://github.com/shoredata",
+            // "followers_url": "https://api.github.com/users/shoredata/followers",
+            // "following_url": "https://api.github.com/users/shoredata/following{/other_user}",
+            // "gists_url": "https://api.github.com/users/shoredata/gists{/gist_id}",
+            // "starred_url": "https://api.github.com/users/shoredata/starred{/owner}{/repo}",
+            // "subscriptions_url": "https://api.github.com/users/shoredata/subscriptions",
+            // "organizations_url": "https://api.github.com/users/shoredata/orgs",
+            // "repos_url": "https://api.github.com/users/shoredata/repos",
+            // "events_url": "https://api.github.com/users/shoredata/events{/privacy}",
+            // "received_events_url": "https://api.github.com/users/shoredata/received_events",
+            // "type": "User",
+            // "site_admin": false,
+            // "name": "Bart Schaefer",
+            // "company": null,
+            // "blog": "",
+            // "location": "Seattle, WA",
+            // "email": null,
+            // "hireable": null,
+            // "bio": null,
+            // "public_repos": 39,
+            // "public_gists": 2,
+            // "followers": 0,
+            // "following": 0,
+            // "created_at": "2017-09-04T17:58:38Z",
+            // "updated_at": "2018-06-24T04:43:26Z"
+            // }
+
+
+        }); 
+</script>
+    
+</head>
+<body>
+    <h1> D O J O S </h1>
+    <a href="/">INDEX</a>
+    <a href="/ninjas">NINJAS</a>
+    <a href="/dojos/new">DOJOS</a>
+
+
+    <form>
+        <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+          </div>
+        </div>
+        <fieldset class="form-group">
+          <div class="row">
+            <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
+            <div class="col-sm-10">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                <label class="form-check-label" for="gridRadios1">
+                  First radio
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                <label class="form-check-label" for="gridRadios2">
+                  Second radio
+                </label>
+              </div>
+              <div class="form-check disabled">
+                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
+                <label class="form-check-label" for="gridRadios3">
+                  Third disabled radio
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <div class="form-group row">
+          <div class="col-sm-2">Checkbox</div>
+          <div class="col-sm-10">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="gridCheck1">
+              <label class="form-check-label" for="gridCheck1">
+                Example checkbox
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Sign in</button>
+          </div>
+        </div>
+      </form>
+    
+    
+      <form>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Email</label>
+            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Password</label>
+            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputAddress">Address</label>
+          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        </div>
+        <div class="form-group">
+          <label for="inputAddress2">Address 2</label>
+          <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputCity">City</label>
+            <input type="text" class="form-control" id="inputCity">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputState">State</label>
+            <select id="inputState" class="form-control">
+              <option selected>Choose...</option>
+              <option>...</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="inputZip">Zip</label>
+            <input type="text" class="form-control" id="inputZip">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">
+              Check me out
+            </label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+      </form>
+
+
+
+
+      <form class="needs-validation" novalidate>
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <label for="validationCustom01">First name</label>
+            <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="validationCustom02">Last name</label>
+            <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="validationCustomUsername">Username</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend">@</span>
+              </div>
+              <input type="text" class="form-control" id="validationCustomUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
+              <div class="invalid-feedback">
+                Please choose a username.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label for="validationCustom03">City</label>
+                <input type="text" class="form-control" id="validationCustom03" placeholder="City" required>
+                <div class="invalid-feedback">
+                    Please provide a valid city.
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="validationCustom04">State</label>
+                <input type="text" class="form-control" id="validationCustom04" placeholder="State" required>
+                <div class="invalid-feedback">
+                    Please provide a valid state.
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="validationCustom05">Zip</label>
+                <input type="text" class="form-control" id="validationCustom05" placeholder="Zip" required>
+                <div class="invalid-feedback">
+                    Please provide a valid zip.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                <label class="form-check-label" for="invalidCheck">
+                    Agree to terms and conditions
+                </label>
+                <div class="invalid-feedback">
+                    You must agree before submitting.
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit form</button>
+    </form>
+      
+      
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>      
+    
+    
+    
+    
+    
+    </body>
+
+</html>
