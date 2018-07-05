@@ -6,13 +6,25 @@ a {
 
 img {
     width: 300px;
+    display: inline-block;
+    margin: 10px;
 }
 
 h1 { 
     word-spacing: 20px;
     letter-spacing: 5px;
+    display: inline-block;
+    margin-right: 30px;
 }
 
+h4 { 
+    display: inline-block;
+}
+
+
+#wrapper {
+    padding: 15px;
+}
 /* .bottom { 
     padding-bottom: 5px;
     margin-bottom: 5px;

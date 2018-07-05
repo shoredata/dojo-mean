@@ -1,52 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>CATS</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
-    <!-- <script src="jsobjs.js"></script> -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
     <link rel="stylesheet" type="text/css" href="/styles/main.css">
-    <!-- <link rel="stylesheet" type="text/css" href="theme.css"> -->
-
-
-    <script>
-        // assuming you have jQuery
-        $(document).ready(function(){
-
-            // var favoritePokemon;
-            // // the given link is for Bulbasaur's information
-            // $.get("https://pokeapi.co/api/v2/pokemon/1/", function(data){     
-            //     favoritePokemon = data.name;
-            //     console.log("Got my favorite Pokemon: ", favoritePokemon);      // Predict the output!
-            // });
-
-
-        }); 
-</script>
-    
 </head>
+<html>
 <body>
-    <h1> WELCOME TO CATS</h1>
-
+    <h1>CATS</h1>
+    <h4>Select something:</h4>
     <a href="/">INDEX</a>
-    <a href="/cats.html">CATS</a>
-    <a href="/cars.html">CARS</a>
-    <a href="/form.html">JUST SOME FORMS...</a>
-
-    <br><br>
+    <a href="/cats">CATS</a>
+    <a href="/cars">CARS</a>
+    <a href="/form">JUST SOME FORMS...</a>
+    <hr>
+    <h5>Here are all the cats:</h5>
     
-    <img src="/images/catt.jpg">
-    <img src="/images/cat2.jpg">
-    <img src="/images/cat3.jpg">
+    <!-- <img src="/images/catt.jpg"> -->
+    <% for (var x in cats) { %>
+        <img src="<%= cats[x].filename %>">
+    <% } %>
 
-    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     
