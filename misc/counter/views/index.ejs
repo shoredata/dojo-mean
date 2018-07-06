@@ -39,15 +39,33 @@
     
 </head>
 <body>
-    <h1>WELCOME</h1>
-<!--     <h4>Select something:</h4>
-    <a href="/">INDEX</a>
-    <a href="/cats">CATS</a>
-    <a href="/cars">CARS</a>
-    <a href="/form">JUST SOME FORMS...</a>
- -->    <hr>
-    
 
+    <div id="wrapper">
+
+    <h1>WELCOME</h1>
+    <h2>Views: <%= viewCounter %></h2>
+    <hr>
+
+    <a href="/views/add/10">Increase Views by 10 [GET]</a>
+    <a href="/views/reset">Reset Views [GET]</a>
+
+    <form action="/views/add" method="post">
+        <div class="form-group">
+            <label for="viewsToAdd">Add Views to Counter:</label>
+            <select class="form-control" id="viewsToAdd" name="viewsToAdd">
+                <option selected value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div class="btn-group" role="group" aria-label="Counter Buttons">
+            <button type="submit" class="btn btn-primary" name="Add">Add Views [POST]</button>
+            <button type="submit" class="btn btn-danger" name="Reset">Reset [POST]</button>
+        </div>
+    </form>
+
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     
