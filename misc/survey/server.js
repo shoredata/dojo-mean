@@ -55,10 +55,10 @@ app.post('/survey/add/', function (req, res) {
     console.log("**********\nAdd Survey, Post req.body = ", req.body);
 
     if ('add' in req.body) {
-        req.session.name = "name";
-        req.session.language = "lang";
-        req.session.location = "loca";
-        req.session.comment = "comm";
+        req.session.name = req.body.name;
+        req.session.language = req.body.language;
+        req.session.location = req.body.location;
+        req.session.comment = req.body.comment;
 
         // Then redirect to the success route
         res.redirect('/success');
@@ -70,6 +70,70 @@ app.post('/survey/add/', function (req, res) {
     }
 
 })
+
+
+
+// root route to render the index.ejs view
+app.get('/numbers', function (req, res) {
+    console.log("**********\nNumber Guessing Game index");
+    // console.log("req.session = " + req.session);
+
+    if (!req.session.guess_value) { 
+        req.session.guess_value = 0;
+        req.session.guess_actualvalue = 0;
+        req.session.guess_state = 0;
+    } 
+
+    var guess_data = {
+        client: req.session.guess_value,
+        server: req.session.guess_actualvalue,
+        state: req.session.guess_state
+    }
+
+    res.render("numbers", { guess: guess_data });
+})
+
+
+app.post('/numbers/add', function (req, res) {
+    console.log("**********\nAdd Guess, Post req.body = ", req.body);
+
+    if ('submit_guess' in req.body) {
+
+        if (req.body.guessed_value.length == 0 )
+        {
+            var guess = Math.floor(Math.random() * 100) + 1;
+            req.session.guess_value = guess;
+            console.log("YOU ARE LAZY >> " + guess)
+        }
+        else {
+            req.session.guess_value = req.body.guessed_value;
+
+            // Then redirect to the numberrs rout to render results
+        }
+        var serv = Math.floor(Math.random() * 100) + 1;
+        req.session.guess_actualvalue = serv;
+        if (req.session.guess_value < req.session.guess_actualvalue) {
+            req.session.guess_state = "blue";  // guess too low
+            console.log("low ... Server was thinking of " + serv);
+        }
+        else if (req.session.guess_value > req.session.guess_actualvalue) {
+            req.session.guess_state = "red";  // guess too high
+            console.log("high ... Server was thinking of " + serv);
+        }
+        else {
+            req.session.guess_state = "green";  // guess perfect
+            console.log("PERFECT ... Server was thinking of " + serv);
+        }
+        res.redirect('/numbers');
+    }
+else {
+        console.log("!!!! UNKNOWN !!!!");
+        // Then redirect to the root route
+        res.redirect('/');
+    }
+
+})
+
 
 
 // tell the express app to listen on port 8000
