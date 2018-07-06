@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Numbers Game - MEAN</title>
+    <title>NinjaGold - MEAN</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
     <!-- <script src="jsobjs.js"></script> -->
@@ -18,35 +18,17 @@
     <link rel="stylesheet" type="text/css" href="/styles/main.css">
     <!-- <link rel="stylesheet" type="text/css" href="theme.css"> -->
 
+    <style>
+        .green { background-color:lightgreen; }
+        .red { background-color:pink; }
+        .yellow { background-color:rgba(255, 166, 0, 0.418); }
+    </style>
+
 
     <script>
         // assuming you have jQuery
         $(document).ready(function () {
 
-
-            function myFunction() {
-                var element = document.getElementById("wrapper");
-                element.style.backgroundColor = "<%= guess.state %>";
-                console.log(element);
-            }
-            myFunction();
-
-
-
-            // $( "div" ).click(function() {
-            // var color = $( this ).css( "background-color" );
-            // $( "#result" ).html( "That div is <span style='color:" +
-            //     color + ";'>" + color + "</span>." );
-            // });
-            $("div").click(function () {
-                var color = $(this).css("background-color");
-                $("#other").html("That div is <span style='color:" + "<%= guess.state %>" + ";'>" + "<%= guess.state %>" + "</span>.");
-            });
-
-
-            // let colorr = ejs.render('<%= guess.state %>');
-
-            // document.getElementById("wrapper").style.backgroundColor = colorr;
             // var favoritePokemon;
             // // the given link is for Bulbasaur's information
             // $.get("https://pokeapi.co/api/v2/pokemon/1/", function(data){     
@@ -66,44 +48,39 @@
 </head>
 
 <body>
-    <div id="other"> TESTING >>>>>>>>>>>>>>>>>>>>>>>>   
-    </div>
-
 
     <div id="wrapper">
 
-        <h1>NUMBERS</h1>
+        <h1>Ninja Gold</h1>
+        <h3>Current Purse: <%= golddata.gold %></h3>
 
         <hr>
-        
+
         <a href="/">Index</a>
         <a href="/numbers">Numbers</a>
         <a href="/ninjagold">Ninja Gold</a>
-        
+
         <br>
         <br>
 
 
-        Last Guess: <%= guess.client %>
-        <br>
-        <br>
-        Last Number: <%= guess.server %>
-        <br>
-        <br>
-        Current State: <%= guess.state %>
-        <br>
-        <br>
-
-
-        <form action="/numbers/add" method="post">
-            <h3>Guess a number I am thinking of from 1 to 100:</h3>
-            <div class="form-group">
-                <input type="text" class="form-control" id="guessed_value" name="guessed_value" value="">
-            </div>
-            <div class="btn-group" role="group" aria-label="Guess Button">
-                <button type="submit" class="btn btn-primary" name="submit_guess">Guess</button>
+        <form action="/ninjagold/update" method="post">
+            <div class="btn-group" role="group" aria-label="Ninja Gold Buttons">
+                <button type="submit" class="btn btn-outline-primary" name="farm">Farm</button>
+                <button type="submit" class="btn btn-outline-dark" name="cave">Cave</button>
+                <button type="submit" class="btn btn-outline-success" name="house">House</button>
+                <button type="submit" class="btn btn-outline-danger" name="casino">Casino</button>
+                <button type="submit" class="btn btn-outline-warning" name="reset">Reset</button>
             </div>
         </form>
+
+        <br>
+
+
+        <% for (a in golddata.actions) { %>
+        <h5 class="<%= golddata.actions[a][1] %>"><%= golddata.actions[a][0] %></h5>
+        <% } %>
+
 
     </div>
 
