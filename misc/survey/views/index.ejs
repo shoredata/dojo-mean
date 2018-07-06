@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Survey - MEAN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <!-- <script src="jsobjs.js"></script> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="/styles/main.css">
+    <!-- <link rel="stylesheet" type="text/css" href="theme.css"> -->
+
+
+    <script>
+        // assuming you have jQuery
+        $(document).ready(function(){
+
+            // var favoritePokemon;
+            // // the given link is for Bulbasaur's information
+            // $.get("https://pokeapi.co/api/v2/pokemon/1/", function(data){     
+            //     favoritePokemon = data.name;
+            //     console.log("Got my favorite Pokemon: ", favoritePokemon);      // Predict the output!
+            // });
+
+            // $( "#target" ).click(function() {
+            //     console.log( "Handler for .click() called." );
+            //     document.getElementById("other").innerText = myname['name'];
+            // });
+
+
+        }); 
+    </script>
+    
+</head>
+<body>
+
+    <div id="wrapper">
+
+        <h1>WELCOME</h1>
+
+        <!-- <a href="/views/add/10">Increase Views by 10 [GET]</a>
+        <a href="/views/reset">Reset Views [GET]</a> -->
+
+        <form action="/survey/add" method="post">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" value="">
+            </div>
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <select class="form-control" id="location" name="location">
+                    <option selected value="seattle">Seattle</option>
+                    <option value="renton">Renton</option>
+                    <option value="bothell">Bothell</option>
+                    <option value="tukwila">Tukwila</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="language">Language:</label>
+                <select class="form-control" id="language" name="language">
+                    <option selected value="esperanto">Esperanto</option>
+                    <option value="csharp">C#</option>
+                    <option value="python">Python</option>
+                    <option value="typescript">TypeScript</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="comment">Comment:</label>
+                <textarea class="form-control" rows="5" id="comment" name="comment" value=""></textarea>
+            </div>
+            <div class="btn-group" role="group" aria-label="Survey Buttons">
+                <button type="submit" class="btn btn-primary" name="add">Submit</button>
+            </div>
+        </form>
+
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+    <!-- NOPE this needs to be in the header to use jquery in the header -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    
+</body>
+</html>
