@@ -1,0 +1,55 @@
+* { border: 1px dashed blue; }
+
+/* a, p {
+    margin: 20px 20px;
+    display: inline-block;
+} */
+
+/* img {
+    width: 300px;
+    display: inline-block;
+    margin: 10px;
+} */
+
+h1 { 
+    word-spacing: 20px;
+    letter-spacing: 5px;
+    /* display: inline-block; */
+    /* margin-right: 30px; */
+}
+
+/* h4 { 
+    display: inline-block;
+} */
+
+
+#wrapper {
+    padding: 20px;
+}
+/* .bottom { 
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 3px double #ccc;
+}
+.container-fluid {
+    padding-top: 10px;
+}
+.content {
+    padding: 10px;
+    margin: 0px;
+} */
+
+/* xx-small x-small small medium large x-large xx-large */
+/* th, tr {
+    font-size: small;    
+} */
+
+/* xx-small x-small small medium large x-large xx-large */
+/* font-size: small;     */
+
+/* p, label, input, number, field, Field {
+    padding: 0px;
+    margin: 0px;
+    font-size: small;
+} */
+

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SW API - MEAN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <!-- <script src="jsobjs.js"></script> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script> -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="/styles/main.css">
+    <!-- <link rel="stylesheet" type="text/css" href="theme.css"> -->
+
+
+    <script>
+        $(document).ready(function () {
+            $('#peopleBtn').click(function () {
+                // let's make the request to our OWN server!
+                $.get('/people', function (data) {
+                    // log the data to be sure we have it before we dive into manipulating the DOM
+                    console.log("got the data", data);
+                }, 'json');
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <h1>WELCOME to the Star Wars API Exercise</h1>
+
+        <hr>
+
+        <a href="/">Home</a>
+        <!-- <a href="/numbers">Numbers</a>
+        <a href="/ninjagold">Ninja Gold</a> -->
+
+        <br>
+        <br>
+
+        <div class="btn btn-outline-success">People</div>
+        <div class="btn btn-outline-primary">Places</div>
+        <button class="btn btn-outline-dark" id="peopleBtn">People JSON</button>
+
+        <% for (var p in allpeople) { %>
+            <h3>Name:
+                <%= allpeople[p].name %>
+            </h3>
+            <h4>Email:
+                <%= allpeople[p].url %>
+            </h4>
+            <hr>
+        <% } %>
+
+        <% for (var p in allplaces) { %>
+            <h3>Name:
+                <%= allplaces[p].name %>
+            </h3>
+            <h4>Email:
+                <%= allplaces[p].url %>
+            </h4>
+            <hr>
+        <% } %>
+
+
+        <form action="/swapi/update" method="post">
+            <!-- <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" value="">
+            </div>
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <select class="form-control" id="location" name="location">
+                    <option selected value="seattle">Seattle</option>
+                    <option value="renton">Renton</option>
+                    <option value="bothell">Bothell</option>
+                    <option value="tukwila">Tukwila</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="language">Language:</label>
+                <select class="form-control" id="language" name="language">
+                    <option selected value="esperanto">Esperanto</option>
+                    <option value="csharp">C#</option>
+                    <option value="python">Python</option>
+                    <option value="typescript">TypeScript</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="comment">Comment:</label>
+                <textarea class="form-control" rows="5" id="comment" name="comment" value=""></textarea>
+            </div> -->
+            <div class="btn-group" role="group" aria-label="Star Wars API Buttons">
+                <button type="submit" class="btn btn-outline-primary" name="prev">Previous 10</button>
+                <button type="submit" class="btn btn-outline-success" name="all">All NNN</button>
+                <button type="submit" class="btn btn-outline-primary" name="next">Next 10</button>
+            </div>
+        </form>
+
+
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <!-- NOPE this needs to be in the header to use jquery in the header -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
