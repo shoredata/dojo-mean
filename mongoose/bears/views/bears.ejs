@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dojo Bears - All Bears [1]</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <!-- <script src="jsobjs.js"></script> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="/styles/main.css">
+
+
+    <script>
+        // assuming you have jQuery
+        $(document).ready(function(){
+
+            // var favoritePokemon;
+            // // the given link is for Bulbasaur's information
+            // $.get("https://pokeapi.co/api/v2/pokemon/1/", function(data){     
+            //     favoritePokemon = data.name;
+            //     console.log("Got my favorite Pokemon: ", favoritePokemon);      // Predict the output!
+            // });
+
+            // $( "#target" ).click(function() {
+            //     console.log( "Handler for .click() called." );
+            //     document.getElementById("other").innerText = myname['name'];
+            // });
+
+
+
+        }); 
+    </script>
+    
+</head>
+<body>
+
+    <div id="wrapper">
+
+        <div class="fluid-container mb-3" role="group" aria-label="Header Buttons">
+            <a class="btn btn-outline-success" href="/">List All Bears [1]</a>
+            <a class="btn btn-outline-primary" href="/bears/new">Create a New Bear [3]</a>
+        </div>
+        
+        <div class="border fluid-container p-2">
+            <h1>Bears!</h1>
+            <% if(typeof allBears == "undefined") { %>
+                <%# Show some HTML herefsdfsdf %>
+                <h5>No bears defined.</h5>
+            <% } else { %>
+                <%# Show other html when you send error object sent %>
+                <%= allBears.Count %>
+                <br>
+                <% for (b in allBears) { %>
+                    <h4>Name: <%= allBears[b].name %><br></h4>
+                    ID: <%= allBears[b]._id %> <br>
+                    Sex: <%= allBears[b].sex %><br>
+                    Age: <%= allBears[b].age %><br>
+                    Markings: <%= allBears[b].markings %><br>
+                    Last Observed: <%= allBears[b].updated_at %><br>
+                    <div class="fluid-container mb-3" role="group" aria-label="Bear Buttons">
+                        <a class="btn btn-outline-success" href="/bears/view/<%= allBears[b]._id %>">SHOW <%= allBears[b].name %> [2]</a>
+                        <a class="btn btn-outline-primary" href="/bears/edit/<%= allBears[b]._id %>">EDIT <%= allBears[b].name %> [5]</a>
+                        <a class="btn btn-outline-danger" href="/bears/destroy/<%= allBears[b]._id %>">KILL <%= allBears[b].name %> [7]</a> 
+                    </div>
+
+                    <hr>
+                <% } %>
+            <% } %>    
+
+        </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+    <!-- NOPE this needs to be in the header to use jquery in the header -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    
+</body>
+</html>

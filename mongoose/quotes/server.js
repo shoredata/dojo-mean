@@ -16,7 +16,7 @@ var QuoteModelSchema = new Schema({
 // https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose
 var QuoteModel = mongoose.model('QuoteModel', QuoteModelSchema);
 
-// setup session for 60 minutes
+// setup session for 60 seconds
 app.use(session({
     secret: '^&*%^&$%^%^&&*(*()',
     resave: false,
