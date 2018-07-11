@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dojo Bears - View Bear [2]</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <!-- <script src="jsobjs.js"></script> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="/styles/main.css">
+
+    <script>
+        // assuming you have jQuery
+        $(document).ready(function(){
+
+            // var favoritePokemon;
+            // // the given link is for Bulbasaur's information
+            // $.get("https://pokeapi.co/api/v2/pokemon/1/", function(data){     
+            //     favoritePokemon = data.name;
+            //     console.log("Got my favorite Pokemon: ", favoritePokemon);      // Predict the output!
+            // });
+
+            // $( "#target" ).click(function() {
+            //     console.log( "Handler for .click() called." );
+            //     document.getElementById("other").innerText = myname['name'];
+            // });
+
+
+
+        }); 
+    </script>
+    
+</head>
+<body>
+
+    <div id="wrapper">
+
+        <div class="fluid-container mb-3" role="group" aria-label="Header Buttons">
+            <a class="btn btn-outline-success" href="/">List All Bears [1]</a>
+            <a class="btn btn-outline-primary" href="/bears/new">Create a New Bear [3]</a>
+        </div>
+        
+
+        <% if(typeof thisBear == "undefined") { %>
+            <%# Show some HTML herefsdfsdf %>
+            <h5>thisBears is undefined.</h5>
+        <% } else { %>
+
+            <h1>This is a Bear:</h1>
+
+            <!-- <%= thisBear %> -->
+
+            <h4>Name: <%= thisBear.name %><br></h4>
+            ID: <%= thisBear._id %> <br>
+            Sex: <%= thisBear.sex %><br>
+            Age: <%= thisBear.age %><br>
+            Markings: <%= thisBear.markings %><br>
+            Last Observed: <%= thisBear.updated_at %><br>
+            <div class="fluid-container mb-3" role="group" aria-label="Bear Buttons">
+                <!-- <a class="btn btn-outline-success" href="/bears/view/<%= thisBear._id %>">SHOW <%= thisBear.name %> [2]</a> -->
+                <a class="btn btn-outline-primary" href="/bears/edit/<%= thisBear._id %>">EDIT <%= thisBear.name %> [5]</a>
+                <a class="btn btn-outline-danger" href="/bears/destroy/<%= thisBear._id %>">KILL <%= thisBear.name %> [7]</a> 
+            </div>
+
+            <hr>
+
+
+        <% } %>    
+
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+    <!-- NOPE this needs to be in the header to use jquery in the header -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    
+</body>
+</html>
