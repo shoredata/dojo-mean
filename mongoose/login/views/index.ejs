@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login + Registration</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <!-- <script src="jsobjs.js"></script> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+
+    <link rel="stylesheet" type="text/css" href="/styles/main.css">
+
+
+    <script>
+        // assuming you have jQuery
+        $(document).ready(function(){
+
+            // var favoritePokemon;
+            // // the given link is for Bulbasaur's information
+            // $.get("https://pokeapi.co/api/v2/pokemon/1/", function(data){     
+            //     favoritePokemon = data.name;
+            //     console.log("Got my favorite Pokemon: ", favoritePokemon);      // Predict the output!
+            // });
+
+            // $( "#target" ).click(function() {
+            //     console.log( "Handler for .click() called." );
+            //     document.getElementById("other").innerText = myname['name'];
+            // });
+
+
+
+        }); 
+    </script>
+    
+</head>
+<body>
+
+    <div id="wrapper">
+        <%- messages('message', locals) %>
+
+        <form action="login" method="post" class="pure-form">
+            <fieldset>
+                <legend><h2>Login to see our content:</h2></legend>
+                <input type="email" placeholder="Email" name="email">
+                <input type="password" placeholder="Password" name="password">
+                <button type="submit" class="pure-button pure-button-primary">Sign in</button>
+            </fieldset>
+        </form>
+
+        <br><br>
+
+        <form action="register" method="post" class="pure-form pure-form-aligned">
+            <legend><h2>Register to join our community:</h2></legend>
+            <fieldset>
+                <div class="pure-control-group">
+                    <label for="email">Email Address</label>
+                    <input id="email" type="text" placeholder="Email Address" name="email">
+                    <span class="pure-form-message-inline"> * Required</span>
+                </div>
+                <div class="pure-control-group">
+                    <label for="first_name">First Name</label>
+                    <input id="first_name" type="text" placeholder="First Name" name="first_name">
+                    <span class="pure-form-message-inline"> * Required</span>
+                </div>
+                <div class="pure-control-group">
+                    <label for="last_name">Last Name</label>
+                    <input id="last_name" type="text" placeholder="Last Name" name="last_name">
+                    <span class="pure-form-message-inline"> * Required</span>
+                </div>
+                <div class="pure-control-group">
+                    <label for="password1">Password</label>
+                    <input id="password1" type="password" placeholder="Password" name="password1">
+                    <span class="pure-form-message-inline"> * Required</span>
+                </div>
+                <div class="pure-control-group">
+                    <label for="password2">Verify Password</label>
+                    <input id="password2" type="password" placeholder="Re-enter Password" name="password2">
+                    <span class="pure-form-message-inline"> * Required</span>
+                </div>
+                <div class="pure-control-group">
+                    <label for="dateofbirth">Date Of Birth</label>
+                    <input id="dateofbirth" type="date" placeholder="dateofbirth" name="dateofbirth">
+                    <span class="pure-form-message-inline"> * Required</span>
+                </div>
+                <div class="pure-control-group">
+                    <label for="submit">Register Now! --> </label>
+                    <button type="submit" class="pure-button pure-button-primary">Register</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+    <!-- NOPE this needs to be in the header to use jquery in the header -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+
+    
+</body>
+</html>

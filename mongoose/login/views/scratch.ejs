@@ -1,0 +1,18 @@
+<div id="messages">
+    <% if(typeof all_messages == "undefined") { %>
+        <%# Show some HTML herefsdfsdf %>
+        <h5>No messages defined.</h5>
+    <% } else { %>
+        <% if (all_messages.length) { %>
+            <% if (all_messages.length > 0) { %>
+                <%= all_messages.length %> Messages :
+                <br>
+                <% for (var idx = 0; idx < all_messages.length; idx++ ) { %>
+                    <%= all_messages[idx] %> <br>
+                <% } %>
+                <br>
+            <% } %>
+        <% } %>
+    <% } %>    
+</div>
+
