@@ -12,7 +12,13 @@ var models = require('./server/models'); //invokes /server/models/index.js
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname, "./client/static")));
+// //OLD=PRE-ANGULAR
+// app.use(express.static(path.join(__dirname, "./client/static")));
+
+//NEW=ANGULAR
+app.use(express.static( __dirname + '/client/dist/client' ));
+
+
 
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
