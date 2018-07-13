@@ -23,6 +23,33 @@ export class AppComponent implements OnInit {
     requested = {};
     has_requested = false;
 
+    newTask: any;  //!!!!!!!!!!!!!!!
+
+         
+    onSubmit() {
+
+        // Code to send off the form data (this.newTask) to the Service
+        // ...
+
+        this.has_requested = false;
+        console.log(`Submitting ...`, this.newTask);
+        // call the service's method to post the data, but make sure the data is bundled up in an object!
+        let observable = this._httpService.postNewTaskToServer(this.newTask);
+        observable.subscribe(data => {
+            console.log("Got new Task data:", data);
+            this.requested = data;
+            this.has_requested = true;
+
+            this.getTasksFromService();
+
+        })
+
+        // Reset this.newTask to a new, clean object.
+        console.log("submit complete");
+        this.newTask = { title: "", description: "" }
+    }
+    
+
   
     constructor(private _httpService: HttpService){ }
 
@@ -37,6 +64,8 @@ export class AppComponent implements OnInit {
         this.snacks = ["vanilla latte with skim milk", "brushed suede", "cookie"];
         this.loggedIn = true;
 
+        this.newTask = { title: "", description: "" }
+
     }
 
     getTasksFromService(){
@@ -49,12 +78,12 @@ export class AppComponent implements OnInit {
             // NOTE: .tasks is externally available to the rest of the app component!!!
 
             console.log("Got our tasks!", this.tasks)
-            console.log("data.length: ", this.tasks.length)
+            console.log("Task Count: ", this.tasks.length)
             
-            var myjson = JSON.stringify(this.tasks);
-            var mystr = JSON.parse(myjson);
-            console.log("JSON", myjson);
-            console.log("stringify", mystr);
+            // var myjson = JSON.stringify(this.tasks);
+            // var mystr = JSON.parse(myjson);
+            // console.log("JSON", myjson);
+            // console.log("stringify", mystr);
 
             // for (var d =0; d < data['tasks'].length; d++) {
             //     console.log (d, "data['tasks'][d]: ", data['tasks'][d].description, data['tasks'][d].title);
@@ -93,6 +122,9 @@ export class AppComponent implements OnInit {
             console.log("Got our data!", data);
             this.requested = data;
             this.has_requested = true;
+
+            this.getTasksFromService();
+
         })
     }
     
