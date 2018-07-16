@@ -3,36 +3,36 @@ const Task = require('../models/task');
 
 
 
-function updateDocument(doc, SchemaTarget, data) {
-    for (var field in SchemaTarget.schema.paths) {
-       if ((field !== '_id') && (field !== '__v')) {
-            var newValue = getObjValue(field, data);
-            console.log('data[' + field + '] = ' + newValue);
-            if (newValue !== undefined) {
-                setObjValue(field, doc, newValue);
-          }  
-       }  
-    }
-    return doc;
-};
+// function updateDocument(doc, SchemaTarget, data) {
+//     for (var field in SchemaTarget.schema.paths) {
+//        if ((field !== '_id') && (field !== '__v')) {
+//             var newValue = getObjValue(field, data);
+//             console.log('data[' + field + '] = ' + newValue);
+//             if (newValue !== undefined) {
+//                 setObjValue(field, doc, newValue);
+//           }  
+//        }  
+//     }
+//     return doc;
+// };
 
-function getObjValue(field, data) {
-    return _.reduce(field.split("."), function(obj, f) { 
-        if(obj) return obj[f];
-    }, data);
-}
+// function getObjValue(field, data) {
+//     return _.reduce(field.split("."), function(obj, f) { 
+//         if(obj) return obj[f];
+//     }, data);
+// }
 
-function setObjValue(field, data, value) {
-  var fieldArr = field.split('.');
-  return _.reduce(fieldArr, function(o, f, i) {
-     if(i == fieldArr.length-1) {
-          o[f] = value;
-     } else {
-          if(!o[f]) o[f] = {};
-     }
-     return o[f];
-  }, data);
-}
+// function setObjValue(field, data, value) {
+//   var fieldArr = field.split('.');
+//   return _.reduce(fieldArr, function(o, f, i) {
+//      if(i == fieldArr.length-1) {
+//           o[f] = value;
+//      } else {
+//           if(!o[f]) o[f] = {};
+//      }
+//      return o[f];
+//   }, data);
+// }
 
 // implement as:
 // app.put('/record/:id', function(req, res) {
@@ -46,7 +46,7 @@ function setObjValue(field, data, value) {
 // retrieve a list of all tasks
 exports.list = (req, res) => {
     const query = req.query || {};
-    console.log(query); // ok
+    console.log("List:"); // ok
 
 	Task.find(query)
 		.then(tasks => {
@@ -62,7 +62,7 @@ exports.list = (req, res) => {
 // retrieve a specific obj using the id
 exports.get = (req, res) => {
     const data = Object.assign(req.body, { _id: req.params.taskId }) || {};
-    console.log(data); //ok
+    console.log("Get:", data); //ok
 	Task.findById(data)
 		.then(task => {
             //hide it from json
@@ -78,7 +78,7 @@ exports.get = (req, res) => {
 // update a specific task
 exports.put = (req, res) => {
 	const data = Object.assign(req.body, { task: req.params }) || {};
-    console.log(data._id);  //ok
+    console.log("Put:", data);  //ok
 
 	Task.findByIdAndUpdate({ _id: data._id }, data)
 		.then(task => {
@@ -97,7 +97,7 @@ exports.put = (req, res) => {
 // create a task
 exports.post = (req, res) => {
     const data = Object.assign({}, req.body, { task: req.body }) || {};
-    console.log(data); //ok
+    console.log("Post:", data); //ok
     
 	Task.create(data)
 		.then(task => {
@@ -112,7 +112,7 @@ exports.post = (req, res) => {
 
 // remove a task record 
 exports.delete = (req, res) => {
-    console.log(req.params.taskId); //ok
+    console.log("Delete:", req.params); //ok
 	Task.findByIdAndRemove(
 		{ _id: req.params.taskId },
 	)

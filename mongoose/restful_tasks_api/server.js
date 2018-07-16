@@ -32,11 +32,13 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 function formatDate(date) {
     var hours = date.getHours();
     var minutes = date.getMinutes();
+    var seconds = date.getSeconds();
     var ampm = hours >= 12 ? 'pm' : 'am';
     hours = hours % 12;
     hours = hours ? hours : 12; // the hour '0' should be '12'
     minutes = minutes < 10 ? '0' + minutes : minutes;
-    var strTime = hours + ':' + minutes + ' ' + ampm;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+    var strTime = hours + ':' + minutes + ':' + seconds + " " + ampm;
     return date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear() + " " + strTime;
 }
 
@@ -50,7 +52,7 @@ require('./server/config/routing.js')(app)
 
 // tell the express app to listen on port 8000
 app.listen(8000, function() {
-    console.log(Array(50).join("*") + "\n[ -- TASKS -- ]   Restful API: Node/MongoDB/Express Server Listening on Port 8000 .. " + formatDate(new Date()));
+    console.log(Array(50).join("*") + "\n[ -- TASKS API -- ]   Restful API: Node/MongoDB/Express Server Listening on Port 8000 .. " + formatDate(new Date()));
 });
 
 

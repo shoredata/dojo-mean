@@ -2,7 +2,7 @@
 const Task = require('../controllers/task');
 
 module.exports = api => {
-	// api.route('/').get(Task.list);
+    // api.route('/').get(Task.list);
 	api.route('/tasks').get(Task.list);
 	api.route('/tasks/:taskId').get(Task.get);
 	api.route('/tasks').post(Task.post);
