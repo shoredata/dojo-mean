@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from './http.service';
+import { TaskComponent } from './task/task.component';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,8 @@ export class AppComponent implements OnInit {
     tasks = [];
     requested: any; //{};
     has_requested = false;
-    newTask: any;  
+    newTask: any;
+    selectedTask: any; //for TaskComponent
 
     constructor(private _httpService: HttpService){ }
 
@@ -19,7 +21,11 @@ export class AppComponent implements OnInit {
     // ngOnInit will run when the component is initialized, after the constructor method.
     ngOnInit(){
         this.getTasksFromService();
-        this.newTask = { title: "", description: "" }
+        this.newTask = { title: "", description: "" };
+    }
+
+    taskToShow(task) {
+        this.selectedTask = task;
     }
 
     // list

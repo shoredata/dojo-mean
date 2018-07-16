@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 import { HttpService } from './http.service';
 import { HttpClientModule } from '@angular/common/http';
 
-import { FormsModule } from '@angular/forms'; // <-- import FormsModule.
+import { FormsModule } from '@angular/forms';
+import { TaskComponent } from './task/task.component'; // <-- import FormsModule.
 
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        TaskComponent
     ],
     imports: [
         BrowserModule,
