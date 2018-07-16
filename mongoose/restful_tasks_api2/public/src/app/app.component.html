@@ -10,7 +10,6 @@
 
 Tasks (Click one to View/Update/Delete):
 <ol>
-    <app-task></app-task>
     <li *ngFor="let task of tasks" (click)="onClickGetTask(task._id)">
         {{task.title}}: 
         {{task.description}} [R] 
@@ -19,11 +18,10 @@ Tasks (Click one to View/Update/Delete):
         <button (click)="taskToShow(task)">Show</button>  <!-- Assume this saves the selected task as selectedTask -->
     </li>
 </ol>
-<app-task *ngIf="selectedTask" [taskToShow]="selectedTask"></app-task> 
+<app-task *ngIf="selectedTask" [taskToShow]="selectedTask"  (aTaskEventEmitter)="taskDataFromChild($event)"></app-task> 
 
 <!-- <div *ngIf="condition; else elseBlock">...</div>
 <ng-template #elseBlock>...</ng-template> -->
-
 
 <div *ngIf="has_requested; else elseBlock">
     Most Recently Used: (Click to Delete)<br>

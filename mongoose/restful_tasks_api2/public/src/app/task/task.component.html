@@ -1,4 +1,19 @@
+aaa
 <div *ngIf="taskToShow">
-<h6>{{taskToShow.title}}</h6>
-<p>{{taskToShow.description}}</p>
+    {{taskToShow.title}}
+    {{taskToShow.description}}
+
+    <form (submit)="triggerEventUpdate()">
+        <!-- use the json pipe to see how requested changes in real time -->
+        <label for="taskToShow.title">Component Update Its' Task: </label>
+        <input type="text" name="taskToShow.title" [(ngModel)]="taskToShow.title" />
+        <input type="text" name="taskToShow.description" [(ngModel)]="taskToShow.description" />
+        <input type="submit" value="Update ^^ Task [U]" />
+
+        <!-- <button (click)='triggerEventUpdate($event)'></button> -->
+        <button (click)='triggerEventUpdate()'></button>
+
+        <p> {{ taskToShow | json }} </p>
+    </form>
+
 </div>

@@ -17,6 +17,14 @@ export class AppComponent implements OnInit {
 
     constructor(private _httpService: HttpService){ }
 
+    taskDataFromChild(taskData){
+        console.log("taskDataFromChild:", taskData);
+        console.log("this.selectedTask:", this.selectedTask);
+        console.log("Updating Selected ...", taskData._id,  taskData);
+        this.requested = taskData;
+        this.onSubmitUpdateTask();
+    }
+    
 
     // ngOnInit will run when the component is initialized, after the constructor method.
     ngOnInit(){
@@ -25,6 +33,7 @@ export class AppComponent implements OnInit {
     }
 
     taskToShow(task) {
+        console.log("Assigning selectedATask:", this.selectedTask);
         this.selectedTask = task;
     }
 
