@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
     }
 
     taskToShow(task) {
-        console.log("Assigning selectedATask:", this.selectedTask);
+        console.log("Assigning selectedATask:", task);
         this.selectedTask = task;
     }
 
