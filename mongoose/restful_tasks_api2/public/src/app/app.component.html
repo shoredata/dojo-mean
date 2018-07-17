@@ -10,11 +10,12 @@
 
 Tasks (Click one to View/Update/Delete):
 <ol>
-    <li *ngFor="let task of tasks" (click)="onClickGetTask(task._id)">
-        {{task.title}}: 
-        {{task.description}} [R] 
-        {{task.completed}}  ||  
-        {{task._id}}  
+    <!-- <li *ngFor="let task of tasks" (click)="onClickGetTask(task._id)" > -->
+    <li *ngFor="let task of tasks" (click)="taskToShow(task)" >
+        {{task.title}} : 
+        {{task.description}} [R] |- 
+        {{task.completed}}  -|- 
+        {{task._id}}  -|
         <button (click)="taskToShow(task)">Show</button>  <!-- Assume this saves the selected task as selectedTask -->
     </li>
 </ol>
@@ -23,19 +24,19 @@ Tasks (Click one to View/Update/Delete):
 <!-- <div *ngIf="condition; else elseBlock">...</div>
 <ng-template #elseBlock>...</ng-template> -->
 
-<div *ngIf="has_requested; else elseBlock">
+<!-- <div *ngIf="has_requested; else elseBlock">
     Most Recently Used: (Click to Delete)<br>
     <span (click)="onClickDeleteTask()">-- Title: {{requested.title}} [D]</span><br>
     <span (click)="onClickDeleteTask()">-- Description: {{requested.description}}</span><br>
     <span (click)="onClickDeleteTask()">-- Completed: {{requested.completed}}</span><br>    
     <form (submit)="onSubmitUpdateTask()">
         <!-- use the json pipe to see how requested changes in real time -->
-        <label for="requested.title">Update Requested Task: </label>
+        <!-- <label for="requested.title">Update Requested Task: </label>
         <input type="text" name="requested.title" [(ngModel)]="requested.title" />
         <input type="text" name="requested.description" [(ngModel)]="requested.description" />
         <input type="submit" value="Update Requested ^^ Task [U]" />
         <p> {{ requested | json }} </p>
     </form>
 </div>
-<ng-template #elseBlock>Select a Task ^^^^</ng-template>
+<ng-template #elseBlock>Select a Task ^^^^</ng-template> -->
 

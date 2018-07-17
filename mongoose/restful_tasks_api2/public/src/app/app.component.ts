@@ -3,15 +3,12 @@ import { HttpService } from './http.service';
 import { TaskComponent } from './task/task.component';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-    title = 'app';
     tasks = [];
-    requested: any; //{};
-    has_requested = false;
     newTask: any;
     selectedTask: any; //for TaskComponent
 
@@ -19,18 +16,14 @@ export class AppComponent implements OnInit {
 
     taskUpdateDataFromChild(taskData){
         console.log("taskUpdateDataFromChild:", taskData);
-        this.requested = taskData;
         this.onSubmitUpdateTask();
     }
 
     taskDeleteDataFromChild(taskData){
         console.log("taskDeleteDataFromChild:", taskData);
-        let taskId = taskData._id;
-        this.selectedTask = undefined;
-        // this.requested = taskData;
         this.onClickDeleteTask();
+        this.selectedTask = undefined;
     }
-    
 
     // ngOnInit will run when the component is initialized, after the constructor method.
     ngOnInit(){
@@ -73,16 +66,12 @@ export class AppComponent implements OnInit {
     // C
     onSubmitCreateNewTask() {
         console.log("Creating New Task ...", this.newTask);
-        this.has_requested = false;
 
-        // call the service's method to post the data, but make sure the data is bundled up in an object!
         let observable = this._httpService.postNewTask(this.newTask);
         observable.subscribe(data => {
             console.log("New Task:", data);
-            this.requested = data;
-            this.has_requested = true;
-
-            //since we added a task refresh the list of all tasks
+            this.selectedTask = data;
+            //since we modified a task refresh the list of all tasks
             this.getTasksFromService();
         })
 
@@ -94,30 +83,24 @@ export class AppComponent implements OnInit {
     // R
     onClickGetTask(taskId) {
         console.log("Requesting Task ...", taskId);
-        this.requested = undefined;
-        this.has_requested = false;
-
+        this.selectedTask = undefined;
         let observable = this._httpService.getATask(taskId);
         observable.subscribe(data => {
             console.log("Requested Task:", data);
-            this.requested = data;
-            this.has_requested = true;
+            this.selectedTask = data;
         })
-
         console.log("Request Complete!");
     }
 
     // U
     onSubmitUpdateTask() {
-        console.log("Updating Requested ...", this.requested._id,  this.requested);
+        console.log("Updating Selected ...", this.selectedTask._id,  this.selectedTask);
 
-        let observable = this._httpService.putATask(this.requested._id, this.requested);
+        let observable = this._httpService.putATask(this.selectedTask._id, this.selectedTask);
         observable.subscribe(data => {
             console.log("Old Data for Updated Task:", data); //data is old!!!!!!!!!!!
-            this.requested = undefined;
-            this.has_requested = false;
-
-            //since we updated a task refresh the list of all tasks
+            this.selectedTask = undefined;
+            //since we modified a task refresh the list of all tasks
             this.getTasksFromService();
         })
 
@@ -126,16 +109,14 @@ export class AppComponent implements OnInit {
 
     // D
     onClickDeleteTask() {
-        console.log("Deleting Task ...", this.requested);
+        console.log("Deleting Task ...", this.selectedTask);
 
         // call the service's method to deelete the task
-        let observable = this._httpService.deleteATask(this.requested._id);
+        let observable = this._httpService.deleteATask(this.selectedTask._id);
         observable.subscribe(data => {
             console.log("Deleted Task:", data);
-            this.requested = undefined;
-            this.has_requested = false;
-
-            //since we removed a task refresh the list of all tasks
+            this.selectedTask = undefined;
+            //since we modified a task refresh the list of all tasks
             this.getTasksFromService();
         })
 

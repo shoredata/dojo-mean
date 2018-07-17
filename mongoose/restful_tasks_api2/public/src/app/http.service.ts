@@ -18,7 +18,6 @@ export class HttpService {
         return this._http.get('/api/tasks/' + taskId);
     }    
     putATask(taskId, taskData) {    //U
-        console.log("PUT", taskId, taskData);
         return this._http.put('/api/tasks/' + taskId, taskData);
     }    
     deleteATask(taskId) {           //D   //returns deleted task JSON

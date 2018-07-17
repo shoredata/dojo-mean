@@ -14,8 +14,6 @@ export class TaskComponent implements OnInit {
     constructor() { }
     ngOnInit() { }
 
-    // triggerEventUpdate(eventData){
-        // console.log("aaa Using form @output to update:", this.taskToShow);
     triggerEventUpdate(){
         console.log("CLICK: update:", this.taskToShow);
         this.aTaskEventUpdateEmitter.emit(this.taskToShow); //we can pass in any data type
