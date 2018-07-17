@@ -1,0 +1,18 @@
+<div *ngIf="cakeToShow">
+    {{cakeToShow.name}}
+    {{cakeToShow.url}}
+    {{cakeToShow.ratings}}
+
+    <form (submit)="triggerEventUpdate()">
+        <label for="newRating.rating">Component Update Its' Cake: </label>
+        <input type="text" name="newRating.rating" [(ngModel)]="newRating.rating" />
+        <input type="text" name="newRating.comment" [(ngModel)]="newRating.comment" />
+
+        <input type="submit" value="Update Cake w/ Rating [U]" />
+        <button (click)='triggerEventUpdate()'>UPDATE</button>
+
+        <!-- use the json pipe to see how requested changes in real time -->
+        <p> {{ newRating | json }} </p>
+    </form>
+
+</div>

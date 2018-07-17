@@ -1,0 +1,42 @@
+<div *ngIf="cakeToShow">
+    Baked By: {{cakeToShow.name}} <br>
+    URL: {{cakeToShow.url}} <br>
+    Ratings: {{cakeToShow.ratings.length}} 
+    <button (click)='triggerCakeDelete()'> DELETE CAKE </button> 
+    <ol>
+        <li *ngFor="let rating of cakeToShow.ratings" >
+            {{rating.rating}} : 
+            {{rating.comment}}
+        </li>
+    </ol>
+
+    <form (submit)="triggerCakeUpdate()">
+
+        <!-- <label for="cakeToShow.name">Update Cake: </label>
+        <input type="text" name="cakeToShow.name" [(ngModel)]="cakeToShow.name" /> 
+        <input type="text" name="cakeToShow.url" [(ngModel)]="cakeToShow.url" />
+        <br> -->
+
+        Select rating:
+        <select class="select" name="newRating.rating" [(ngModel)]="newRating.rating">
+          <option selected="selected" value="5">5</option>
+          <option value="4">4</option>
+          <option value="3">3</option>
+          <option value="2">2</option>
+          <option value="1">1</option>
+        </select>
+
+
+
+        <label for="newRating.comment"> Comment: </label>
+        <!-- <input type="text" name="newRating.rating" [(ngModel)]="newRating.rating" />  -->
+        <input type="text" name="newRating.comment" [(ngModel)]="newRating.comment" />
+        <input type="submit" value="Update Cake w/ Rating [U]" />
+        <!-- <button (click)='triggerCakeUpdate()'>UPDATE</button> -->
+
+        <!-- use the json pipe to see how requested changes in real time -->
+        <p>Rating: {{ newRating | json }} </p>
+    </form>
+
+
+</div>

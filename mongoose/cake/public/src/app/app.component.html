@@ -1,0 +1,25 @@
+<form (submit)="onSubmitCreateNewCake()">
+    <!-- use the json pipe to see how newCake changes in real time -->
+    <label for="newCake.name">Create a New Cake: </label>
+    <input type="text" name="newCake.name" [(ngModel)]="newCake.name" />
+    <input type="text" name="newCake.url" [(ngModel)]="newCake.url" />
+    <input type="submit" value="Create Cake [C]" />
+    <p> {{ newCake | json }} </p>
+</form>
+
+Cakes [{{cakes.length}}] (Click one to View/Add Rating):
+<ol>
+    <li *ngFor="let cake of cakes" (click)="cakeToShow(cake)" >
+        {{cake.name}} : 
+        {{cake.url}} 
+        [R={{cake.ratings.length}}] 
+        {{cake._id}}
+        <button (click)="cakeToShow(cake)">Show</button>  <!-- Assume this saves the selected cake as selectedCake -->
+    </li>
+</ol>
+<app-cake *ngIf="selectedCake" 
+    [cakeToShow]="selectedCake"  
+    (aCakeEventUpdateEmitter)="cakeUpdateDataFromChild($event)" 
+    (aCakeEventDeleteCakeEmitter)="cakeDeleteCakeFromChild($event)" 
+></app-cake> 
+
