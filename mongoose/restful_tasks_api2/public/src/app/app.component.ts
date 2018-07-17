@@ -8,7 +8,7 @@ import { TaskComponent } from './task/task.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
+    title = 'app';
     tasks = [];
     requested: any; //{};
     has_requested = false;
@@ -17,12 +17,18 @@ export class AppComponent implements OnInit {
 
     constructor(private _httpService: HttpService){ }
 
-    taskDataFromChild(taskData){
-        console.log("taskDataFromChild:", taskData);
-        console.log("this.selectedTask:", this.selectedTask);
-        console.log("Updating Selected ...", taskData._id,  taskData);
+    taskUpdateDataFromChild(taskData){
+        console.log("taskUpdateDataFromChild:", taskData);
         this.requested = taskData;
         this.onSubmitUpdateTask();
+    }
+
+    taskDeleteDataFromChild(taskData){
+        console.log("taskDeleteDataFromChild:", taskData);
+        let taskId = taskData._id;
+        this.selectedTask = undefined;
+        // this.requested = taskData;
+        this.onClickDeleteTask();
     }
     
 

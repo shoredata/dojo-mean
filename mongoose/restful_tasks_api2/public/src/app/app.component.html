@@ -18,7 +18,7 @@ Tasks (Click one to View/Update/Delete):
         <button (click)="taskToShow(task)">Show</button>  <!-- Assume this saves the selected task as selectedTask -->
     </li>
 </ol>
-<app-task *ngIf="selectedTask" [taskToShow]="selectedTask"  (aTaskEventEmitter)="taskDataFromChild($event)"></app-task> 
+<app-task *ngIf="selectedTask" [taskToShow]="selectedTask"  (aTaskEventDeleteEmitter)="taskDeleteDataFromChild($event)" (aTaskEventUpdateEmitter)="taskUpdateDataFromChild($event)"></app-task> 
 
 <!-- <div *ngIf="condition; else elseBlock">...</div>
 <ng-template #elseBlock>...</ng-template> -->

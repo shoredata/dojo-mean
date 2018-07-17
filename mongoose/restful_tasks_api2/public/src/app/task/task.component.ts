@@ -8,7 +8,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class TaskComponent implements OnInit {
     @Input() taskToShow: any;  // use the @Input decorator to indicate this comes from the parent
-    @Output() aTaskEventEmitter = new EventEmitter();
+    @Output() aTaskEventUpdateEmitter = new EventEmitter();
+    @Output() aTaskEventDeleteEmitter = new EventEmitter();
 
     constructor() { }
     ngOnInit() { }
@@ -16,12 +17,16 @@ export class TaskComponent implements OnInit {
     // triggerEventUpdate(eventData){
         // console.log("aaa Using form @output to update:", this.taskToShow);
     triggerEventUpdate(){
-        console.log("aaa component form update:", this.taskToShow);
-        this.aTaskEventEmitter.emit(this.taskToShow); //we can pass in any data type
+        console.log("CLICK: update:", this.taskToShow);
+        this.aTaskEventUpdateEmitter.emit(this.taskToShow); //we can pass in any data type
+    }
+    triggerEventDelete(){
+        console.log("CLICK: delete:", this.taskToShow);
+        this.aTaskEventDeleteEmitter.emit(this.taskToShow); //we can pass in any data type
     }
     formEventUpdate(){
-        console.log("bbb component form update:", this.taskToShow);
-        this.aTaskEventEmitter.emit(this.taskToShow); //we can pass in any data type
+        console.log("ENTER: update:", this.taskToShow);
+        this.aTaskEventUpdateEmitter.emit(this.taskToShow); //we can pass in any data type
     }
 
 }
