@@ -1,0 +1,13 @@
+<h3>LEDGER</h3>
+Coins: {{coins}} <br>
+Trades: {{trades.length}}<br>
+Trade Ledger [{{trades.length}}] (Click one to View Details):
+<ol>
+    <li *ngFor="let trade of trades" (click)="tradeToShow(trade)" >
+        {{trade.action}} : 
+        {{trade.value}}
+        <button (click)="tradeToShow(trade)">Show</button> 
+    </li>
+</ol>
+<app-detail *ngIf="selectedTrade" [tradeToShow]="selectedTrade"  ></app-detail> 
+
