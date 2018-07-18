@@ -1,0 +1,8 @@
+<p>
+  reviews works!
+</p>
+<!-- notice the slash in front of 'products' -->
+<!-- without the slash, products/details/5 would be appended to our existing route, resulting in 
+reviews/products/details/5, which we would not be able to handle with our routes written as they are now -->
+<a [routerLink] = "['/products', 'details', 5]"> Go to /products/details/5 </a>  
+<router-outlet></router-outlet>

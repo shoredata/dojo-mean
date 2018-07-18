@@ -1,0 +1,9 @@
+<div id="all">
+    <p>
+  products works!
+</p>
+<!-- notice the lack of a slash in front of 'details' -->
+<!-- without the slash, details/5 will be appended to our existing route, which is /products -->
+<a [routerLink] = "['details', 5]"> Go to /products/details/5 </a>  
+<router-outlet></router-outlet>
+</div>
