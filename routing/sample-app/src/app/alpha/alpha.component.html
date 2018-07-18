@@ -1,0 +1,9 @@
+<br>-- alpha -- <br>
+<button (click)='triggerPushIndex()'> Push Length+1 To Array </button> 
+<button (click)='triggerPushTime()'> Push Time To Array </button> 
+<button (click)='triggerPopArray()'> Pop From Array </button> 
+<ul>
+    <li *ngFor="let n of numbers" >
+        {{n}} : {{numbers[n-1]}}
+    </li>
+</ul>
