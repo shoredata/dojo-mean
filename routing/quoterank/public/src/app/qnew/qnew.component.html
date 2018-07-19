@@ -1,3 +1,10 @@
-<p>
-  qnew works!
-</p>
+<div id="wrap">
+    NEW QUOTE for {{thisAuthor.name}}: <br>
+    <form (submit)="triggerQuoteCreate()">
+        <label for="quoteToCreate.quote">Quote: </label>
+        <input type="text" name="quoteToCreate.quote" [(ngModel)]="quoteToCreate.quote" />
+        <input type="submit" value="Create Quote" />
+        <button (click)="cancelQuoteCreate()">Cancel</button> 
+        <p> {{ quoteToCreate | json }} </p>
+    </form>
+</div>

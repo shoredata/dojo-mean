@@ -1,3 +1,11 @@
-<p>
-  anew works!
-</p>
+<div id="wrap">
+    NEW AUTHOR: <br>
+    <form (submit)="triggerAuthorCreate()">
+        <label for="authorToCreate.name">Create Author: </label>
+        <input type="text" name="authorToCreate.name" [(ngModel)]="authorToCreate.name" />
+        <input type="submit" value="Create Author" />
+        <button (click)="cancelAuthorCreate()">Cancel</button> 
+        <p> {{ authorToCreate | json }} </p>
+
+    </form>
+</div>

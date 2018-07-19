@@ -2,6 +2,16 @@ const author = require('../controllers/authors');
 const path = require('path');
 
 module.exports = api => {
+
+    api.use(function (req, res, next) {
+        console.log("***** Incoming Request: ", req.method, req.originalUrl)
+        // console.log('Request URL:', req.originalUrl)
+        next()
+    // }, function (req, res, next) {
+    //     console.log('Request Type:', req.method)
+    //     next()
+    })
+
 	api.route('/api/authors').get(author.getAuthors);           //list
 	api.route('/api/authors').post(author.createAuthor);        //C author
 	api.route('/api/authors/:id').get(author.getAuthor);        //R author, includes list of author.quotes

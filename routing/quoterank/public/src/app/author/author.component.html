@@ -1,3 +1,27 @@
-<p>
-  author works!
-</p>
+<div id="wrap">
+    AUTHOR: 
+    <br>
+    name: {{authorToShow.name}} ....
+    <br>
+    <button (click)="createQuote()">Create New Quote</button> 
+
+    <app-qnew *ngIf="newQuote" 
+        [quoteToCreate]="newQuote" 
+        [thisAuthor]="authorToShow"
+        (aQuoteCreateEmitter)="quoteCreateFromChild($event)"  
+        (aQuoteCancelCreateEmitter)="quoteCancelCreateFromChild($event)" >
+    </app-qnew> 
+
+
+
+    <ol>
+        <li *ngFor="let q of authorToShow.quotes"> 
+            <p> Quote: {{q.quote}}   Rating: {{q.votes}}  </p>
+            <button (click)="voteUp(q)">:)</button>
+            <button (click)="voteDown(q)">:(</button>
+            <button (click)="deleteQuote(q)">X|</button>
+        </li>
+    </ol>
+        
+
+</div>

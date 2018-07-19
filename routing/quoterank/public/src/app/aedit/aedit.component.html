@@ -1,3 +1,12 @@
-<p>
-  aedit works!
-</p>
+<div id="wrap">
+    EDIT AUTHOR: <br>
+    <form (submit)="triggerAuthorUpdate()">
+
+        <label for="authorToEdit.name"> Name: </label>
+        <input type="text" name="authorToEdit.name" [(ngModel)]="authorToEdit.name" />
+        <input type="submit" value="Update Author Name" />
+        <button (click)="cancelAuthorUpdate()">Cancel</button> 
+
+        <p>Author: {{ authorToEdit | json }} </p>
+    </form>
+</div>
