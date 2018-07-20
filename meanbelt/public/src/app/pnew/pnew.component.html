@@ -1,0 +1,42 @@
+<div id="wrap">
+    <h3>Know of a pet needing a home?</h3>
+    <form (submit)="triggerPetCreate()">
+
+        <label for="petToCreate.name">Name</label>
+        <input type="text" name="petToCreate.name" [(ngModel)]="petToCreate.name" />
+
+        <br>
+
+        <label for="petToCreate.name">Type</label>
+        <input type="text" name="petToCreate.type" [(ngModel)]="petToCreate.type" />
+
+        <br>
+
+        <label for="petToCreate.description">Description</label>
+        <input type="text" name="petToCreate.description" [(ngModel)]="petToCreate.description" />
+
+        <br>
+
+        <label for="petToCreate.skill1">Skill</label>
+        <input type="text" name="petToCreate.skill1" [(ngModel)]="petToCreate.skill1" />
+        <br>
+        <label for="petToCreate.skill2">Skill</label>
+        <input type="text" name="petToCreate.skill2" [(ngModel)]="petToCreate.skill2" />
+        <br>
+        <label for="petToCreate.skill3">Skill</label>
+        <input type="text" name="petToCreate.skill3" [(ngModel)]="petToCreate.skill3" />
+
+        <br>
+
+
+        <input type="submit" value="Add Pet" />
+        <button (click)="cancelPetCreate()">Cancel</button> 
+
+        <!-- <br>
+
+        <p> {{ petToCreate | json }} </p> -->
+
+    </form>
+
+
+</div>
