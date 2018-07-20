@@ -22,9 +22,36 @@ module.exports = {
     createAuthor: function (req, res) {
         console.log(Array(50).join("*") + "\n createAuthor: ", req.body, "\n " + utils.formatDate(new Date())); //
         var newAuthor = new Author({ name: req.body.name });
+
+        // var p = new register_model({
+        //     // name: req.body.name,
+        //     // username: req.body.username,
+        //     email: req.body.email,
+        //     first_name: req.body.first_name,
+        //     last_name: req.body.last_name,
+        //     dateofbirth: req.body.dateofbirth,
+        //     password1: req.body.password1,
+        //     password2: req.body.password2,
+        // });
+    
+        var error = newAuthor.validateSync()
+        if (error) {
+            let errs = [];
+            console.log(Array(50).join("*"));
+            for (var e in error.errors){
+                let serr = error.errors[e].path + ": " +error.errors[e].name + " = " + error.errors[e].message;
+                console.log(serr);
+                serr = "Author Error: " + error.errors[e].message.replace("Path ", "");
+                // req.flash("danger", serr);   // FIND THIS!!!!!!
+                errs.push(serr);
+            }
+            return res.status(500).json({ errors: errs});
+        }
+    
+
         newAuthor.save((err) => {
             if(err){
-                // console.log("There was an error creating: \n", err)
+                console.log(Array(50).join("#") + "\n There was an error creating: \n", err, "\n", err.errors)
                 return res.status(500).json(err);
             }
             // return res.json(newCake);
@@ -48,6 +75,24 @@ module.exports = {
     updateAuthor: function (req, res) {
         console.log(Array(50).join("*") + "\n updateAuthor: ", req.params, req.body, "\n " + utils.formatDate(new Date())); //
         const data = Object.assign(req.body, { author: req.params }) || {};
+
+        var newAuthor = new Author({ name: data.name });
+        // console.log("***", newAuthor);
+
+        var error = newAuthor.validateSync()
+        if (error) {
+            let errs = [];
+            console.log(Array(50).join("*"));
+            for (var e in error.errors){
+                let serr = error.errors[e].path + ": " +error.errors[e].name + " = " + error.errors[e].message;
+                console.log(serr);
+                serr = "Author Error: " + error.errors[e].message.replace("Path ", "");
+                // req.flash("danger", serr);   // FIND THIS!!!!!!
+                errs.push(serr);
+            }
+            return res.status(500).json({ errors: errs});
+        }
+
     	Author.findByIdAndUpdate({ _id: req.params.id }, data)
 		.then(author => {
 			if (!author) {
@@ -71,8 +116,23 @@ module.exports = {
                 return res.status(401).json(err);
             }
             else if (author) {
-                console.log("Adding rating to Author: ", author.id);
+                console.log("Adding Quote to Author: ", author.id);
                 var newQuote = new Quote({ quote: req.body.quote, votes: 0 });
+
+                var error = newQuote.validateSync()
+                if (error) {
+                    let errs = [];
+                    console.log(Array(50).join("*"));
+                    for (var e in error.errors){
+                        let serr = error.errors[e].path + ": " +error.errors[e].name + " = " + error.errors[e].message;
+                        console.log(serr);
+                        serr = "Quote Error: " + error.errors[e].message.replace("Path ", "");
+                        // req.flash("danger", serr);   // FIND THIS!!!!!!
+                        errs.push(serr);
+                    }
+                    return res.status(500).json({ errors: errs});
+                }
+
                 newQuote.save(function(err) {
                     author.quotes.push(newQuote);
                     author.save(function(err) {

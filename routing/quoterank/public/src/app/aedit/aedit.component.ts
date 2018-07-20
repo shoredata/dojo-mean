@@ -15,11 +15,11 @@ export class AeditComponent implements OnInit {
     ngOnInit() { }
 
     triggerAuthorUpdate(){
-        // console.log("CLICK: update:", this.authorToEdit);
+        console.log("CLICK: update:", this.authorToEdit);
         this.aAuthorUpdateEmitter.emit(this.authorToEdit);
     }
     cancelAuthorUpdate(){
-        // console.log("CLICK: cancel");
+        console.log("CLICK: cancel");
         this.aAuthorCancelUpdateEmitter.emit(); 
     }
 

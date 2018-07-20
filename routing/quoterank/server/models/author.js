@@ -8,8 +8,11 @@ const AuthorSchema = new mongoose.Schema(
         quotes: [],
         name: {
             type: String,
+            minlength: [5, "Please enter at least 5 characters for the Name."],
+            maxlength: [64, "Please enter no more than 64 characters for the Name."],
+            trim: true,
             default: '',
-            required: [true, "Please enter a Name."]
+            required: [true, "Please enter an Author Name."]
         },
         updated_at: { type: Date, default: Date.now },
         created_at: { type: Date, required: true, default: Date.now }

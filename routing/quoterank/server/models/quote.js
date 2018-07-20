@@ -11,8 +11,11 @@ const QuoteSchema = new mongoose.Schema(
         },
         quote: {
             type: String,
+            minlength: [3, "Please enter at least 3 characters for the Quote."],
+            maxlength: [128, "Please enter no more than 128 characters for the Quote."],
+            trim: true,
             default: '',
-            required: [true, "Please enter a Quote."],
+            required: [true, "Please enter a Quote."]
         },
         updated_at: { type: Date, default: Date.now },
         created_at: { type: Date, required: true, default: Date.now }

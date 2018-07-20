@@ -4,6 +4,14 @@
     name: {{authorToShow.name}} ....
     <br>
     <button (click)="createQuote()">Create New Quote</button> 
+    <button (click)="closeAuthorDisplay()">Back</button> 
+
+    <ol>
+        <li class="make-red" *ngFor="let e of errors">             
+            {{ e }}
+        </li>
+    </ol>
+    
 
     <app-qnew *ngIf="newQuote" 
         [quoteToCreate]="newQuote" 

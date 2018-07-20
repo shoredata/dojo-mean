@@ -1,11 +1,21 @@
 <div id="wrap">
     AUTHORS (Click one to View/Edit/Add Quote/Vote):<br>
-    <button (click)="createAuthor()">Create New Author</button> 
-    <button (click)="getAuthorsFromService()">Refresh</button> 
+    <div *ngIf="!selectedAuthor && !editedAuthor && !newAuthor" >
+        <button (click)="createAuthor()">Create New Author</button> 
+        <button (click)="getAuthorsFromService()">Refresh</button> 
+    </div>
+
+    <ol>
+        <li class="make-red" *ngFor="let e of errors">             
+            {{ e }}
+        </li>
+    </ol>
+
 
     <app-author *ngIf="selectedAuthor" 
         [authorToShow]="selectedAuthor" 
-        (aAuthorModifiedEmitter)="authorModifiedReloadMsgFromChild($event)" >
+        (aAuthorModifiedEmitter)="authorModifiedReloadMsgFromChild($event)" 
+        (aCloseAuthorDisplayEmmitter)="authorClosedMsgFromChild($event)" >
     </app-author> 
     <app-aedit *ngIf="editedAuthor" 
         [authorToEdit]="editedAuthor" 
@@ -18,15 +28,24 @@
         (aAuthorCancelCreateEmitter)="authorCancelCreateFromChild($event)" >
     </app-anew> 
 
-    <ol>
-        <li *ngFor="let a of authors"> 
-            <p (click)="authorToShow(a)" >
-                {{a.name}}  
-                [{{a.quotes.length}} quotes]
-            </p>
-            <button (click)="authorToShow(a)">Show</button>
-            <button (click)="authorToEdit(a)">Edit</button>
-            <button (click)="authorToDelete(a)">Delete</button>
-        </li>
-    </ol>
+    <div *ngIf="!selectedAuthor && !editedAuthor && !newAuthor" >
+        <ol>
+            <li *ngFor="let a of authors"> 
+                <p (click)="authorToShow(a)" >
+                    {{a.name}}  
+                    [{{a.quotes.length}} quotes]
+                </p>
+                <button (click)="authorToShow(a)">Show</button>
+                <button (click)="authorToEdit(a)">Edit</button>
+                <button (click)="authorToDelete(a)">Delete</button>
+            </li>
+        </ol>
+    </div>
 </div>
+
+<!-- <div *ngIf="isValid; else templateName">
+    isValid is true
+</div>
+<ng-template #templateName>
+    isValid is false
+</ng-template> -->

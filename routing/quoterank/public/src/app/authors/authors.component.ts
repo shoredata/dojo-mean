@@ -14,6 +14,11 @@ export class AuthorsComponent implements OnInit {
     selectedAuthor: any;
     editedAuthor: any;
 
+    errors = [];
+
+    isValid: boolean = true; //clear this when the authors are modified in author = need to refresh
+
+
     constructor(private _dataService: DataService){ }
 
     // ngOnInit will run when the component is initialized, after the constructor method.
@@ -25,6 +30,7 @@ export class AuthorsComponent implements OnInit {
         this.newAuthor = undefined;
         this.selectedAuthor = undefined;
         this.editedAuthor = undefined;
+        this.errors = [];
     }
 
     // LOCAL FORM EVENTS ==================================================================================
@@ -50,9 +56,18 @@ export class AuthorsComponent implements OnInit {
     authorToDelete(author) {
         // console.log("authorToDelete() .. Deleting Author: ", author);
         let observable = this._dataService.deleteAuthor(author._id);
-        observable.subscribe(data => {
-            this.ngOnInit();
-        })
+        observable.subscribe(
+            data => {
+                this.ngOnInit();
+            },
+            err => {
+                console.log("Delete Author Error:", err.error.errors);
+                // for (var idx=0; idx<err.error.errors.length; idx++) {
+                //     console.log("A", idx, err.error.errors[idx]);
+                // }
+                this.errors = err.error.errors;
+            }
+        )
     }
 
     // CHILD METHODS ===========================================================================================
@@ -61,31 +76,56 @@ export class AuthorsComponent implements OnInit {
         // console.log("RELOAD ALL AUTHORS HERE!!");
     }
 
+    authorClosedMsgFromChild(){
+        this.clearLocal();
+        this.getAuthorsFromService();
+    }
+
 
     authorUpdateFromChild(authorData){
         // console.log("authorUpdateFromChild:", authorData);
         let observable = this._dataService.putUpdateAuthor(authorData._id, authorData);
-        observable.subscribe(data => {
-            this.ngOnInit();
-        })
+        observable.subscribe(
+            data => {
+                this.ngOnInit();
+            },
+            err => {
+                console.log("Update Author Error:", err.error.errors);
+                // for (var idx=0; idx<err.error.errors.length; idx++) {
+                //     console.log("A", idx, err.error.errors[idx]);
+                // }
+                this.errors = err.error.errors;
+            }
+        )
     }
 
     authorCancelUpdateFromChild(){
         // console.log("authorCancelUpdateFromChild:");
         this.editedAuthor = undefined;
+        this.errors = [];
     }
 
     authorCreateFromChild(authorData){
         // console.log("authorCreateFromChild:", authorData);
         let observable = this._dataService.postNewAuthor(authorData);
-        observable.subscribe(data => {
-            this.ngOnInit();
-        })
+        observable.subscribe(
+            data => {
+                this.ngOnInit();
+            },
+            err => {
+                console.log("Create Author Error:", err.error.errors);
+                // for (var idx=0; idx<err.error.errors.length; idx++) {
+                //     console.log("A", idx, err.error.errors[idx]);
+                // }
+                this.errors = err.error.errors;
+            }
+        )
     }
 
     authorCancelCreateFromChild(){
         // console.log("authorCancelCreateFromChild:");
         this.newAuthor = undefined;
+        this.errors = [];
     }
 
 
@@ -97,9 +137,16 @@ export class AuthorsComponent implements OnInit {
         let observable = this._dataService.getAuthors();
         observable.subscribe(data => {
             this.authors = <Array<any>>data;
-            console.log("Authors: ", this.authors.length, this.authors);
+            this.isValid = true;
+            // console.log("Authors: ", this.authors.length, this.authors);
         });
     }
 
+    // toggleValid() {
+    //     this.isValid = !this.isValid;
+    // }
+
 
 }
+
+
