@@ -10,9 +10,12 @@ export class AnewComponent implements OnInit {
     @Output() aAuthorCreateEmitter = new EventEmitter();
     @Output() aAuthorCancelCreateEmitter = new EventEmitter();
 
+    tempAuthor: any;
+
     constructor() { }
     ngOnInit() { 
         this.authorToCreate = { name: "", quotes: [] };
+        this.tempAuthor = { name:"", quotes:[] };
     }
 
     triggerAuthorCreate(){

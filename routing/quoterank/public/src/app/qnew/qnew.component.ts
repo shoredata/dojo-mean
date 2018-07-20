@@ -11,9 +11,12 @@ export class QnewComponent implements OnInit {
     @Output() aQuoteCreateEmitter = new EventEmitter();
     @Output() aQuoteCancelCreateEmitter = new EventEmitter();
 
+    tempQuote: any;
+
     constructor() { }
     ngOnInit() { 
         this.quoteToCreate = { quote: "", votes: 0 };
+        this.tempQuote = { quote: "", votes: 0 };
     }
 
     triggerQuoteCreate(){

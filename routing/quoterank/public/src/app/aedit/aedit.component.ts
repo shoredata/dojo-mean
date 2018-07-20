@@ -11,8 +11,12 @@ export class AeditComponent implements OnInit {
     @Output() aAuthorUpdateEmitter = new EventEmitter();
     @Output() aAuthorCancelUpdateEmitter = new EventEmitter();
 
+    tempAuthor: any;
+
     constructor() { }
-    ngOnInit() { }
+    ngOnInit() { 
+        this.tempAuthor = { name:"", quotes:[] };
+    }
 
     triggerAuthorUpdate(){
         console.log("CLICK: update:", this.authorToEdit);

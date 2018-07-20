@@ -4,3 +4,10 @@
     padding: 5px;
     border-radius: 5px;    
 }
+
+.make-red {
+    color: red;
+}
+.make-green {
+    color: green;
+}

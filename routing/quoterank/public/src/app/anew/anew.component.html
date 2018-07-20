@@ -1,11 +1,26 @@
 <div id="wrap">
     NEW AUTHOR: <br>
     <form (submit)="triggerAuthorCreate()">
-        <label for="authorToCreate.name">Create Author: </label>
+        <label for="authorToCreate.name">Create Author: (Actual, BEV Only)</label>
         <input type="text" name="authorToCreate.name" [(ngModel)]="authorToCreate.name" />
         <input type="submit" value="Create Author" />
         <button (click)="cancelAuthorCreate()">Cancel</button> 
         <p> {{ authorToCreate | json }} </p>
 
     </form>
+
+    <label for="author">Author: (Test, FEV Only)</label>
+    <input 
+        type="text" 
+        name="name"
+        required 
+        minlength="7" 
+        maxlength="32"
+        [(ngModel)]="tempAuthor.name"
+        #name="ngModel"
+    />
+    <div class="make-red" *ngIf="name.errors">Errors: {{ name.errors | json }}</div>
+    <div class="make-green" *ngIf="name.valid">Valid: {{ name.valid | json }}</div>
+
+
 </div>

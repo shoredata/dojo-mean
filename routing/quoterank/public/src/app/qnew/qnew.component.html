@@ -1,10 +1,26 @@
 <div id="wrap">
     NEW QUOTE for {{thisAuthor.name}}: <br>
     <form (submit)="triggerQuoteCreate()">
-        <label for="quoteToCreate.quote">Quote: </label>
+        <label for="quoteToCreate.quote">Quote: (Real, BEV Only)</label>
         <input type="text" name="quoteToCreate.quote" [(ngModel)]="quoteToCreate.quote" />
         <input type="submit" value="Create Quote" />
         <button (click)="cancelQuoteCreate()">Cancel</button> 
         <p> {{ quoteToCreate | json }} </p>
     </form>
+
+
+    <label for="quote">Quote: (Test, FEV Only)</label>
+    <input 
+        type="text" 
+        name="quote"
+        required 
+        minlength="7" 
+        maxlength="32"
+        [(ngModel)]="tempQuote.quote"
+        #quote="ngModel"
+    />
+    <div class="make-red" *ngIf="quote.errors">Errors: {{ quote.errors | json }}</div>
+    <div class="make-green" *ngIf="quote.valid">Valid: {{ quote.valid | json }}</div>
+
+
 </div>
