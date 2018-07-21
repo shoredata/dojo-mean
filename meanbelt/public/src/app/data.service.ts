@@ -9,9 +9,11 @@ export class DataService {
     constructor(private _http: HttpClient) { }
 
     getPets() {
+        let arr = [];
         return this._http.get('/api/pets');
     }    
     postNewPet(petData) {
+        // console.log("postNewPet:", petData);
         return this._http.post('/api/pets', petData);  
     }    
     getPet(petId) {

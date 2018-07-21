@@ -8,12 +8,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [ 
-    { path: 'pets', component: PetsComponent, children: [
-        { path: ':id', component: PetComponent, children: [
-            { path: 'edit', component: PeditComponent }
-        ] },
-        { path: 'new', component: PnewComponent }
-    ] },
+    { path: 'pets', component: PetsComponent },    
+    { path: 'pets/new', component: PnewComponent },
+    { path: 'pets/view/:id', component: PetComponent },
+    { path: 'pets/edit/:id', component: PeditComponent },
     // main redirect
     { path: '', pathMatch: 'full', redirectTo: '/pets' },  
     // the ** will catch anything that did not match any of the above routes

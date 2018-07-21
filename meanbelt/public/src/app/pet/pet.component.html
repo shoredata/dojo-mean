@@ -1,20 +1,43 @@
-<h3>Details about {{petToShow.name}}</h3><button (click)="closePetDisplay()">Home</button> 
+<div *ngIf="petToShow">
 
-<app-pedit *ngIf="petToEdit" 
-    [petToEdit]="petToEdit" 
-    (aPetEditEmitter)="petCreateFromChild($event)"  
-    (aPetCancelEditEmitter)="petCancelEditFromChild($event)" >
-</app-pedit> 
+    <nav class="ib">
+        <a class="ib" routerLink="/pets">Home</a>
+    </nav>
 
-<br>
-Pet Type: {{petToShow.type}} <br>
-Description: {{petToShow.description}} <br>
-Skills: <br>
-<span class="lpad">{{petToShow.skill1}} </span><br>
-<span class="lpad">{{petToShow.skill2}} </span><br>
-<span class="lpad">{{petToShow.skill3}} </span><br>
-Likes: {{petToShow.likes}} <br>
+    <br>
+    <table id="pets">
+        <tr>
+            <th>
+                Details about {{petToShow.name}}
+            </th>
+        </tr>
+        <tr>
+            <td>Pet Type: </td>
+            <td>{{petToShow.type}} </td>
+        </tr>
+        <tr>
+            <td>Description: </td>
+            <td>{{petToShow.description}} </td>
+        </tr>
+        <tr>
+            <td>Skill: </td>
+            <td>{{petToShow.skill1}} </td>
+        </tr>
+        <tr>
+            <td>Skill: </td>
+            <td>{{petToShow.skill2}} </td>
+        </tr>
+        <tr>
+            <td>Skill: </td>
+            <td>{{petToShow.skill3}} </td>
+        </tr>
+        <tr>
+            <td>Likes: </td>
+            <td>{{petToShow.likes}} </td>
+        </tr>
+    </table>
 
-<button (click)="Like()">Like this Pet</button> 
-<button (click)="Delete()">Adopt this Pet</button> 
+    <button (click)="triggerLike()">Like this Pet</button>
+    <button (click)="triggerDelete()">Adopt this Pet</button>
 
+</div>

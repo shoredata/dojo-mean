@@ -1,51 +1,27 @@
-<h4>These pets are looking for a home!</h4>
-<div *ngIf="!selectedPet && !newPet && !editedPet" >
-    <button (click)="createPet()">Add a pet to the Shelter</button>
-</div>
+<h4 class="ib">These pets are looking for a home!</h4>
+<nav width="200" class="ib">
+    <a width="200" class="ib" routerLink="/pets/new">Add a pet to the Shelter</a>        
+</nav>
 
-<ol>
+<ul>
     <li class="make-red" *ngFor="let e of errors">             
         {{ e }}
     </li>
-</ol>
+</ul>
+    
+<table id="pets">
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Actions</th>
 
-<app-pet *ngIf="selectedPet" 
-    [petToShow]="selectedPet" 
-    (aPetModifiedEmitter)="petModifiedReloadMsgFromChild($event)" 
-    (aClosePetDisplayEmmitter)="petClosedMsgFromChild($event)" >
-</app-pet> 
-
-<app-pnew *ngIf="newPet" 
-    [petToCreate]="newPet" 
-    (aPetCreateEmitter)="petCreatedMsgFromChild($event)" 
-    (aPetCancelCreateEmitter)="petCreateClosedMsgFromChild($event)" >
-</app-pnew> 
-
-<app-pedit *ngIf="editedPet" 
-    [petToEdit]="editedPet" 
-    (aPetUpdateEmitter)="petUpdatedMsgFromChild($event)" 
-    (aPetCancelUpdateEmitter)="petUpdateClosedMsgFromChild($event)" >
-</app-pedit> 
-
-<div *ngIf="!selectedPet && !newPet && !editedPet" >
-    <div *ngIf="pets" >
-        <table id="pets">
-            <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Actions</th>
-            </tr>
-            <tr *ngFor="let p of pets">
-                <td>{{p.name}}</td>
-                <td>{{p.type}}</td>
-                <td>
-                    <button (click)="petToShow(p)">Details</button>
-
-                    <!-- <button [routerLink]="['/pets/'p._id'/edit]">Edit w/R</button> -->
-
-                    <button (click)="petToEdit(p)">Edit</button>
-                </td>
-            </tr>
-        </table>
-    </div>
-</div>
+    </tr>
+    <tr *ngFor="let p of pets">
+        <td>{{p.name}}</td>
+        <td>{{p.type}}</td>
+        <td>
+            <a [routerLink] = "['/pets', 'view', p._id]"> Details </a>              
+            <a [routerLink] = "['/pets', 'edit', p._id]"> Edit </a>              
+        </td>
+    </tr>
+</table>

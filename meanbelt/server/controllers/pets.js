@@ -141,20 +141,33 @@ module.exports = {
             if (!test_pet) {
 
                 //changing name & everything ok, does not exist!!!
+                var p = {
+                    name: data.name,
+                    type: data.type,
+                    description: data.description,
+                    skill1: data.skill1,
+                    skill2: data.skill2,
+                    skill3: data.skill3,
+                    likes: data.likes,
+                };
+                console.log("AQW0", req.params.id, test_pet, p);
 
-                Pet.findByIdAndUpdate({ _id: req.params.id }, newPet)
+                Pet.findByIdAndUpdate({ _id: req.params.id }, p)
                 .then(pet => {
                     if (!pet) {
+                        console.log("AQW1");
                         return res.sendStatus(404);
                     }
                     // console.log(pet);
-                    res.json(pet);
+                    console.log("AQW2");
+                    return res.json(pet);
                 })
                 .catch(err => {
                     // console.log("There was an error updating: \n", err)   ... look at err.errors !!!!
-                    console.log("AQW");
+                    console.log("AQW3");
                     return res.status(401).json(err);
                 });
+                console.log("AQW4");
         
             }
             else {
@@ -179,7 +192,7 @@ module.exports = {
                             return res.sendStatus(404);
                         }
                         // console.log(pet);
-                        res.json(pet);
+                        return res.json(pet);
                     })
                     .catch(err => {
                         // console.log("There was an error updating: \n", err)   ... look at err.errors !!!!

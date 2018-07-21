@@ -1,42 +1,40 @@
-<div id="wrap">
-        <h3>Edit this Pet</h3>
-        <form (submit)="triggerPetUpdate()">
+<ol>
+    <li class="make-red" *ngFor="let e of errors">             
+        {{ e }}
+    </li>
+</ol>
+
+<h3>Edit this Pet</h3>
+<form (ngSubmit)="triggerPetUpdate()" *ngIf="petToShow">
+
+    <span class="col1" >Name</span>
+    <input class="col2" type="text" name="petToShow.name" [(ngModel)]="petToShow.name" />
+
+    <br>
+
+    <label class="col1" for="petToShow.name">Type</label>
+    <input class="col2" type="text" name="petToShow.type" [(ngModel)]="petToShow.type" />
+
+    <br>
+
+    <label class="col1" for="petToShow.description">Description</label>
+    <input class="col2" type="text" name="petToShow.description" [(ngModel)]="petToShow.description" />
+
+    <br>
+
+    <label class="col1" for="petToShow.skill1">Skill</label>
+    <input class="col2" type="text" name="petToShow.skill1" [(ngModel)]="petToShow.skill1" />
+    <br>
+    <label class="col1" for="petToShow.skill2">Skill</label>
+    <input class="col2" type="text" name="petToShow.skill2" [(ngModel)]="petToShow.skill2" />
+    <br>
+    <label class="col1" for="petToShow.skill3">Skill</label>
+    <input class="col2" type="text" name="petToShow.skill3" [(ngModel)]="petToShow.skill3" />
+
+    <br>
+
+    <button class="move-right" type="button" (click)="triggerPetUpdate()">Edit Pet</button> 
+    <button type="button" (click)="cancelPetUpdate()">Cancel</button> 
     
-            <label for="petToEdit.name">Name</label>
-            <input type="text" name="petToEdit.name" [(ngModel)]="petToEdit.name" />
-    
-            <br>
-    
-            <label for="petToEdit.name">Type</label>
-            <input type="text" name="petToEdit.type" [(ngModel)]="petToEdit.type" />
-    
-            <br>
-    
-            <label for="petToEdit.description">Description</label>
-            <input type="text" name="petToEdit.description" [(ngModel)]="petToEdit.description" />
-    
-            <br>
-    
-            <label for="petToEdit.skill1">Skill</label>
-            <input type="text" name="petToEdit.skill1" [(ngModel)]="petToEdit.skill1" />
-            <br>
-            <label for="petToEdit.skill2">Skill</label>
-            <input type="text" name="petToEdit.skill2" [(ngModel)]="petToEdit.skill2" />
-            <br>
-            <label for="petToEdit.skill3">Skill</label>
-            <input type="text" name="petToEdit.skill3" [(ngModel)]="petToEdit.skill3" />
-    
-            <br>
-    
-    
-            <input type="submit" value="Edit Pet" />
-            <button (click)="cancelPetUpdate()">Cancel</button> 
-    
-            <br>
-    
-            <!-- <p> {{ petToEdit | json }} </p> -->
-    
-        </form>
-    
-    
-    </div>
+
+</form>

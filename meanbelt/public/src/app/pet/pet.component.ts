@@ -1,80 +1,59 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { DataService } from '../data.service';
 
 @Component({
-  selector: 'app-pet',
-  templateUrl: './pet.component.html',
-  styleUrls: ['./pet.component.css']
+    selector: 'app-pet',
+    templateUrl: './pet.component.html',
+    styleUrls: ['./pet.component.css']
 })
 export class PetComponent implements OnInit {
-    @Input() petToShow: any;
-    @Output() aPetModifiedEmitter = new EventEmitter();
-    @Output() aClosePetDisplayEmmitter = new EventEmitter();
-
+    myId: string;
+    petToShow: any;
     boolLiked: boolean;
-    
-    constructor(private _dataService: DataService){ }
+
+    constructor(
+        private _dataService: DataService,
+        private _route: ActivatedRoute,
+        private _router: Router,
+        private _location: Location,
+    ) { }
 
     ngOnInit() {
-        this.clearLocal();
+        this.petToShow = undefined;
         this.boolLiked = false;
-    }
-
-    clearLocal(){
-
+        this._route.parent.params.subscribe((params: Params) => console.log("A:", "parent params: ", params))
+        this._route.params.subscribe((params: Params) => {
+            this.myId = params['id'];
+            // console.log("Have Pet Id: ", this.myId)
+            this.getPetData();
+        });
     }
 
     getPetData() {
-        // console.log("getAuthorData() ...");
-        let observable = this._dataService.getPet(this.petToShow._id);
+        let observable = this._dataService.getPet(this.myId);
         observable.subscribe(data => {
             this.petToShow = data;
-            console.log("Do Update");
+            // console.log("Have Pet Data: ", data);
         })
     }
 
-    petEditFromChild(petData){
-        // console.log("quoteCreateFromChild:", quoteData);
-    //     let observable = this._dataService.postAddQuote(this.authorToShow._id, quoteData);
-    //     observable.subscribe(
-    //         data => {
-    //             this.clearLocal();
-    //             this.getAuthorData();
-    //         },
-    //         err => {
-    //             console.log("Create Quote Error:", err.error.errors);
-    //             // for (var idx=0; idx<err.error.errors.length; idx++) {
-    //             //     console.log("A", idx, err.error.errors[idx]);
-    //             // }
-    //             this.errors = err.error.errors;
-    //         }
-    //     )
-    //     this.aAuthorModifiedEmitter.emit(); 
+    triggerClosePetDisplay() {
+        // console.log("===CLOSE PET====") ;
+        this._location.back();
     }
 
-    petCancelEditFromChild(){
-        // // console.log("quoteCancelCreateFromChild:");
-        // this.clearLocal();
-    }
-
-    closePetDisplay() {
-        this.aClosePetDisplayEmmitter.emit(); 
-    }
-
-
-
-    Like(){
-        console.log("Like:");
-
-        if (!this.boolLiked) {
-
-            console.log("Liking!!");
-
+    triggerLike(){
+        // console.log("triggerLike()");
+        if (this.boolLiked) {
+            console.log("ignoring ...");
+        }
+        else {
+            // console.log("Liking!!");
             let observable = this._dataService.putLikePet(this.petToShow._id);
             observable.subscribe(
                 data => {
-                    // this.clearLocal();
-                    this.aPetModifiedEmitter.emit(); 
                     this.getPetData();
                 },
                 err => {
@@ -89,13 +68,12 @@ export class PetComponent implements OnInit {
         }
     }
 
-    Delete(){
-        console.log("Delete:");
+    triggerDelete(){
+        // console.log("triggerDelete()");
         let observable = this._dataService.deletePet(this.petToShow._id);
         observable.subscribe(
             data => {
-                this.aPetModifiedEmitter.emit(); 
-                this.aClosePetDisplayEmmitter.emit(); 
+                this.triggerClosePetDisplay();
             },
             err => {
                 // console.log("Delete Quote Error:", err.error.errors);
@@ -106,7 +84,6 @@ export class PetComponent implements OnInit {
             }
         )
     }
-
 
 
 }
