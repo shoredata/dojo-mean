@@ -12,8 +12,10 @@ module.exports = api => {
 
 	api.route('/api/pets').get(pet.getPets);            //list
 	api.route('/api/pets').post(pet.createPet);         //C 
+	api.route('/api/pets/new').post(pet.createAPet);         //C v2
 	api.route('/api/pets/:id').get(pet.getPet);         //R 
 	api.route('/api/pets/:id').patch(pet.updatePet);    //U
+	api.route('/api/pets/:id').post(pet.updateAPet);        //U v2
 	api.route('/api/pets/:id').delete(pet.deletePet);   //D
 	api.route('/api/pets/:id').put(pet.likePet);        //U like
     

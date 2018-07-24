@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
 import { DataService } from '../data.service';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-pet',
@@ -23,12 +24,13 @@ export class PetComponent implements OnInit {
     ngOnInit() {
         this.petToShow = undefined;
         this.boolLiked = false;
-        this._route.parent.params.subscribe((params: Params) => console.log("A:", "parent params: ", params))
+
         this._route.params.subscribe((params: Params) => {
             this.myId = params['id'];
-            // console.log("Have Pet Id: ", this.myId)
+            console.log("A:", "id: ", this.myId); 
             this.getPetData();
         });
+
     }
 
     getPetData() {
@@ -54,6 +56,7 @@ export class PetComponent implements OnInit {
             let observable = this._dataService.putLikePet(this.petToShow._id);
             observable.subscribe(
                 data => {
+                    console.log("liked ...");
                     this.getPetData();
                 },
                 err => {

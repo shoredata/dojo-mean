@@ -16,12 +16,20 @@ export class DataService {
         // console.log("postNewPet:", petData);
         return this._http.post('/api/pets', petData);  
     }    
+    postNewPetV2(petData) {
+        // console.log("postNewPet:", petData);
+        return this._http.post('/api/pets/new', petData);  
+    }    
     getPet(petId) {
         return this._http.get('/api/pets/' + petId);
     }    
     patchUpdatePet(petId, petData) {
         // console.log("putUpdateAuthor:", authorId, authorData)
         return this._http.patch('/api/pets/' + petId, petData);
+    } 
+    postUpdatePetV2(petId, petData) {
+        // console.log("putUpdateAuthor:", authorId, authorData)
+        return this._http.post('/api/pets/' + petId, petData);
     } 
     deletePet(petId) {
         return this._http.delete('/api/pets/' + petId);

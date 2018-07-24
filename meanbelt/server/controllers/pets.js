@@ -261,6 +261,27 @@ module.exports = {
     },
 
 
+
+    createAPet: function(req, res) {
+        console.log(" createAPet: ", req.body); // ok, need new error parser
+        Pet.create(req.body)
+        .then(data => { console.log(" createAPet => data: ", data); return res.json(data); } )
+        .catch(errs =>  { console.log(" createAPet => errs: ", errs); return res.status(500).json(errs); } )
+    },
+
+    updateAPet: function (req, res) {
+        console.log(" updateAPet: ", req.params, req.body); //
+        // var id = req.body.delete.id;
+        // console.log("AAA",id);
+        Pet.findById(mongoose.Types.ObjectId(req.params.id))
+            .then(data => {
+                Pet.findByIdAndUpdate(mongoose.Types.ObjectId(req.params.id), req.body, {runValidators: true, context: 'query' })
+                    .then(data => { console.log(" updateAPet => data: ", data); return res.json(data); } )
+                    .catch(errs =>  { console.log(" updateAPet => errs: ", errs); return res.status(500).json(errs); } )
+            });
+    }
+
+
 }
 
 

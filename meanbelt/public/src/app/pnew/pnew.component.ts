@@ -3,12 +3,15 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { DataService } from '../data.service';
 import { PetComponent } from '../pet/pet.component';
+// const utils = require('../../../../config/utils');
 
 @Component({
     selector: 'app-pnew',
     templateUrl: './pnew.component.html',
     styleUrls: ['./pnew.component.css']
 })
+
+
 
 export class PnewComponent implements OnInit {
 
@@ -40,21 +43,56 @@ export class PnewComponent implements OnInit {
         observable.subscribe(
             data => {
                 // console.log("Pet Created", data);
-                this._router.navigateByUrl('/pets');
+                this._router.navigate(['/pets']);
                 return;
 
             },
             err => {
-                console.log("Create Pet Error:", err.error.errors);
+                console.log("Create Pet Error a:", err.error.errors);
                 this.errors = err.error.errors;
                 return;
             }
         )
     }
 
+
+    triggerPetCreateV2(){
+        // console.log("triggerPetCreate:", this.petToCreate);
+        let observable = this._dataService.postNewPetV2(this.petToCreate);
+        observable.subscribe(
+            data => {
+                console.log("Pet Created", data);
+                this._router.navigate(['/pets']);
+                return;
+
+            },
+            err => {
+                console.log("Create Pet Error b:", err);
+                // this.errors = err;
+                this.errors = this.unpackErrors(err);
+                return;
+            }
+        )
+    }
+
+
     cancelPetCreate(){
         // console.log("CLICK: Cancel");
-        this._router.navigateByUrl('/pets');
+        this._router.navigate(['/pets']);
+    }
+
+    unpackErrors(error) {
+        console.log("unpackErrors");
+        let errs = [];
+        console.log(Array(50).join("*"));
+        console.log(error);
+        for (var e in error.error.errors){
+            let serr = error.error.errors[e].path + ": " + error.error.errors[e].name + " = " + error.error.errors[e].message;
+            console.log(serr);
+            serr = "Pet Error: " + error.error.errors[e].message.replace("Path ", "");
+            errs.push(serr);
+        }
+        return errs;
     }
 
 }

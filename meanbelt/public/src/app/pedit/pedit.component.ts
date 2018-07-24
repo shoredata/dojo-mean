@@ -9,9 +9,13 @@ import { DataService } from '../data.service';
     styleUrls: ['./pedit.component.css']
 })
 export class PeditComponent implements OnInit {
+    petNameOriginal: any;
     petToShow: any; 
     myId: string;
     errors = [];    
+
+
+    simplePet = {};
 
     constructor(
         private _dataService: DataService,
@@ -35,13 +39,14 @@ export class PeditComponent implements OnInit {
         let observable = this._dataService.getPet(this.myId);
         observable.subscribe(data => {
             this.petToShow = data;
+            this.petNameOriginal = this.petToShow.name;
             // console.log("Have Pet Data: ", data);
         })
     }
 
     cancelPetUpdate() {
         // console.log("===CLOSE PET====") ;
-        this._router.navigateByUrl('/pets');
+        this._router.navigate(['/pets']);
     }
 
     triggerPetUpdate(){
@@ -50,7 +55,7 @@ export class PeditComponent implements OnInit {
         observable.subscribe(
             data => {
                 // console.log("Pet Updated", data);
-                this._router.navigateByUrl('/pets');
+                this._router.navigate(['/pets']);
                 return;
 
             },
@@ -59,6 +64,52 @@ export class PeditComponent implements OnInit {
                 this.errors = err.error.errors;
             }
         )
+    }
+
+    triggerPetUpdateV2() {
+         this.simplePet = {
+            //  name: this.petToShow.name,
+             type: this.petToShow.type,
+             description: this.petToShow.description,
+             skill1: this.petToShow.skill1,
+             skill2: this.petToShow.skill2,
+             skill3: this.petToShow.skill3,
+             updated_at: Date.now(),
+            //  id: this.petToShow._id,
+        }
+        if (this.petToShow.name != this.petNameOriginal) {
+            console.log("triggerPetUpdateV2:", this.petToShow);
+            this.simplePet['name'] = this.petToShow.name;
+        };
+        console.log("triggerPetUpdateV2:", this.simplePet);
+        let observable = this._dataService.postUpdatePetV2(this.myId, this.simplePet);
+        observable.subscribe(
+            data => {
+                console.log("Pet Updated", data);
+                this._router.navigate(['/pets']);
+                return;
+
+            },
+            err => {
+                console.log("Update Pet Error:", err.error.errors);
+                this.errors = this.unpackErrors(err);
+            }
+        )
+       
+    }
+
+    unpackErrors(error) {
+        console.log("unpackErrors");
+        let errs = [];
+        console.log(Array(50).join("*"));
+        console.log(error);
+        for (var e in error.error.errors){
+            let serr = error.error.errors[e].path + ": " + error.error.errors[e].name + " = " + error.error.errors[e].message;
+            console.log(serr);
+            serr = "Pet Error: " + error.error.errors[e].message.replace("Path ", "");
+            errs.push(serr);
+        }
+        return errs;
     }
 
 

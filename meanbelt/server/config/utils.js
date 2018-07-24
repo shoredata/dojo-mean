@@ -10,3 +10,5 @@ exports.formatDate = function(date) {
     var strTime = hours + ':' + minutes + ':' + seconds + " " + ampm;
     return date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear() + " " + strTime;
 }
+
+
