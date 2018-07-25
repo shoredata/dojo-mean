@@ -1,3 +1,96 @@
-<p>
-  player works!
-</p>
+<div id="wrap" *ngIf="players">
+
+    <h2>Player Status - Game {{gameNumber}}</h2>
+
+    <div class="ib" *ngIf="gameNumber==1">
+        <button class="btn-dark" [routerLink] = "['/status/game', '1']"> Game 1 </button>
+        <button class="btn-light" [routerLink] = "['/status/game', '2']"> Game 2 </button>
+        <button class="btn-light" [routerLink] = "['/status/game', '3']"> Game 3 </button>
+    </div>
+    <div class="ib" *ngIf="gameNumber==2">
+        <button class="btn-light" [routerLink] = "['/status/game', '1']"> Game 1 </button>
+        <button class="btn-dark" [routerLink] = "['/status/game', '2']"> Game 2 </button>
+        <button class="btn-light" [routerLink] = "['/status/game', '3']"> Game 3 </button>
+    </div>
+    <div class="ib" *ngIf="gameNumber==3">
+        <button class="btn-light" [routerLink] = "['/status/game', '1']"> Game 1 </button>
+        <button class="btn-light" [routerLink] = "['/status/game', '2']"> Game 2 </button>
+        <button class="btn-dark" [routerLink] = "['/status/game', '3']"> Game 3 </button>
+    </div>
+
+    <br>
+
+    <table id="players" class="table">
+        <tr>
+            <th>Team Name</th>
+            <th>Actions</th>
+        </tr>
+        <tr *ngFor="let p of players">
+            <td>{{p.name}}</td>
+            <td>{{p.position}}</td>
+            <td>
+                <div class="ib" *ngIf="gameNumber==1">
+                    <div class="ib" *ngIf="p.game1==2;else alt2">
+                        <button class="btn-success" (click)="setPlaying(2,p)"> Playing </button>  
+                    </div>
+                    <ng-template class="ib" #alt2>
+                        <button class="btn-outline-success" (click)="setPlaying(2,p)"> Playing </button>  
+                    </ng-template>
+                    <div class="ib" *ngIf="p.game1==1;else alt1">
+                        <button class="btn-danger" (click)="setPlaying(1,p)"> Not Playing </button>  
+                    </div>
+                    <ng-template class="ib" #alt1>
+                        <button class="btn-outline-danger" (click)="setPlaying(1,p)"> Not Playing </button>  
+                    </ng-template>
+                    <div class="ib" *ngIf="p.game1==0;else alt0">
+                        <button class="btn-warning" (click)="setPlaying(0,p)"> Undecided </button>  
+                    </div>
+                    <ng-template class="ib" #alt0>
+                        <button class="btn-outline-warning" (click)="setPlaying(0,p)"> Undecided </button>  
+                    </ng-template>
+                </div>
+                <div class="ib" *ngIf="gameNumber==2">
+                    <div class="ib" *ngIf="p.game2==2;else alt2">
+                        <button class="btn-success" (click)="setPlaying(2,p)"> Playing </button>  
+                    </div>
+                    <ng-template class="ib" #alt2>
+                        <button class="btn-outline-success" (click)="setPlaying(2,p)"> Playing </button>  
+                    </ng-template>
+                    <div class="ib" *ngIf="p.game2==1;else alt1">
+                        <button class="btn-danger" (click)="setPlaying(1,p)"> Not Playing </button>  
+                    </div>
+                    <ng-template class="ib" #alt1>
+                        <button class="btn-outline-danger" (click)="setPlaying(1,p)"> Not Playing </button>  
+                    </ng-template>
+                    <div class="ib" *ngIf="p.game2==0;else alt0">
+                        <button class="btn-warning" (click)="setPlaying(0,p)"> Undecided </button>  
+                    </div>
+                    <ng-template class="ib" #alt0>
+                        <button class="btn-outline-warning" (click)="setPlaying(0,p)"> Undecided </button>  
+                    </ng-template>            
+                </div>
+                <div class="ib" *ngIf="gameNumber==3">
+                    <div class="ib" *ngIf="p.game3==2;else alt2">
+                        <button class="btn-success" (click)="setPlaying(2,p)"> Playing </button>  
+                    </div>
+                    <ng-template class="ib" #alt2>
+                        <button class="btn-outline-success" (click)="setPlaying(2,p)"> Playing </button>  
+                    </ng-template>
+                    <div class="ib" *ngIf="p.game3==1;else alt1">
+                        <button class="btn-danger" (click)="setPlaying(1,p)"> Not Playing </button>  
+                    </div>
+                    <ng-template class="ib" #alt1>
+                        <button class="btn-outline-danger" (click)="setPlaying(1,p)"> Not Playing </button>  
+                    </ng-template>
+                    <div class="ib" *ngIf="p.game3==0;else alt0">
+                        <button class="btn-warning" (click)="setPlaying(0,p)"> Undecided </button>  
+                    </div>
+                    <ng-template class="ib" #alt0>
+                        <button class="btn-outline-warning" (click)="setPlaying(0,p)"> Undecided </button>  
+                    </ng-template>            
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</div>

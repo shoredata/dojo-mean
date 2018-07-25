@@ -1,3 +1,22 @@
-<p>
-  players works!
-</p>
+<div id="wrap">
+
+    <button class="btn-light" [routerLink] = "['/players/list']"> List </button>
+    <button class="btn-light" [routerLink] = "['/players/addplayer']"> Add Player </button>    
+    <br>
+
+    <table id="players" class="table">
+        <tr>
+            <th>Team Name</th>
+            <th>Preferred Position</th>
+            <th>Actions</th>
+        </tr>
+        <tr *ngFor="let p of players">
+            <td>{{p.name}}</td>
+            <td>{{p.position}}</td>
+            <td>
+                <button class="btn-danger" (click)="deletePlayer(p)"> Delete </button>  
+            </td>
+        </tr>
+    </table>
+
+</div>

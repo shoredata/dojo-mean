@@ -1,10 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { DataService } from './data.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'app';
+export class AppComponent implements OnInit {
+
+    constructor(
+        private _dataService: DataService,
+        private _route: ActivatedRoute,
+        private _router: Router,
+        private _location: Location,
+    ) { }
+
+    ngOnInit() {
+        
+    }
+
+
 }

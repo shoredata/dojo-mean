@@ -1,3 +1,35 @@
-<p>
-  pnew works!
-</p>
+<div id="wrap">
+
+    <button class="btn-light" [routerLink] = "['/players/list']"> List </button>
+    <button class="btn-light" [routerLink] = "['/players/addplayer']"> Add Player </button>    
+    <br>
+
+    <div id="wrap">
+
+        <h3> Add Player </h3>
+    
+        <ul>
+            <li class="make-red" *ngFor="let e of errors">             
+                {{ e }}
+            </li>
+        </ul>
+        
+        <form (submit)="triggerPlayerCreate()">
+    
+            <label for="name">Player Name:</label>
+            <input type="text" name="name" required minlength="2" #name="ngModel" [(ngModel)]="playerToCreate.name" />
+            <span class="make-red" *ngIf="!name.valid && (name.dirty || name.touched)">The Player Name must contain at least 2 characters.</span>
+    
+            <br>
+    
+            <label for="position">Preferred Position:</label>
+            <input type="text" name="position" [(ngModel)]="playerToCreate.position" />
+    
+            <br>
+            
+            <button type="submit" class="btn-success" [disabled]="!name.valid" >Add</button> 
+    
+        </form>
+        
+    </div>
+</div>
