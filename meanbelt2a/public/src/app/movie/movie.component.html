@@ -1,3 +1,28 @@
-<p>
-  movie works!
-</p>
+<div *ngIf="movieToShow">
+    <h4>Reviews for {{movieToShow.title}}</h4>
+
+    <button class="btn-danger" (click)="deleteMovie()"> DELETE MOVIE </button> 
+    <button class="btn-success" [routerLink] = "['/movies']"> HOME </button>
+    <button class="btn-primary" [routerLink] = "['/movies', movieToShow._id, 'review']"> ADD REVIEW </button>
+
+    <table id="movies" class="table">
+        <tr>
+            <th>Reviewer</th>
+            <th>Stars</th>
+            <th>Review</th>
+            <th>Action {{movieToShow.reviews.count}}</th>
+        </tr>
+        <tr *ngFor="let revw of movieToShow.reviews">
+            <td>{{revw.reviewer}}</td>
+            <td>{{revw.rating}}</td>
+            <td>{{revw.review}}</td>
+            <td>
+                <button class="btn-danger" (click)="deleteReview(revw)"> Delete </button>  
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+
+

@@ -1,3 +1,30 @@
-<p>
-  movies works!
-</p>
+<h4>Movie List</h4>
+
+<nav width="200" class="ib">
+    <div *ngIf="!newMovie" >
+        <button class="btn-primary" (click)="createMovie()"> Add a New Movie </button> 
+    </div>
+</nav>
+    
+<table id="movies" class="table">
+    <tr>
+        <th>Name</th>
+        <th>Rating [Reviews]</th>
+        <th>Actions</th>
+    </tr>
+    <tr *ngFor="let m of movies">
+        <td>{{m.title}}</td>
+        <td>{{m.rating}} [{{m.reviews.length}}]</td>
+        <td>
+            <button class="btn-success" [routerLink] = "['/movies', m._id]"> Read Reviews </button>
+            <button class="btn-primary" [routerLink] = "['/movies', m._id, 'review']"> Write Review </button>
+        </td>
+    </tr>
+</table>
+
+<app-mnew *ngIf="newMovie" 
+    [movieToCreate]="newMovie" 
+    [reviewToCreate]="newReview" 
+    (aMovieCreatedEmitter)="moviesModifiedReloadMsgFromChild()" 
+    (aCloseNewMovieEmmitter)="newMovieClosedMsgFromChild()" >
+</app-mnew> 

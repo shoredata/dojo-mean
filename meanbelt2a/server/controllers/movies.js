@@ -1,3 +1,5 @@
+'use strict';
+
 //http://mongoosejs.com/docs/populate.html
 const mongoose = require('mongoose');
 const Movie = mongoose.model('Movie');
@@ -124,7 +126,7 @@ module.exports = {
 
     // D delete review
     deleteReview: function (req, res) {
-        console.log(" deleteReview: ", req.params, req.body); //
+        console.log(" deleteReview: ", req.params); //
         Movie.findOne({_id: req.params.id}, (err, movie) => {
             if(err) {
                 return res.status(401).json(err);
@@ -150,8 +152,11 @@ module.exports = {
                 }
 
                 if (ldelete>-1) {
-                    console.log("DO IT: ", idx, movie.reviews[idx], req.params.rid);
-                    movie.reviews.slice(ldelete, 1);
+                    console.log("DO IT: ", ldelete, movie.reviews[ldelete], req.params.rid);
+                    // movie.reviews.slice(ldelete, 1);
+                    movie.reviews.pull(movie.reviews[ldelete]);
+                    movie.markModified('reviews');    // ***************************
+                    console.log(" --> AFTER: ", movie.reviews);
                 }
 
                 if (count>0) {
@@ -165,16 +170,12 @@ module.exports = {
                 movie.markModified('rating');     // ***************************
 
                 // movie.reviews.pull(movie.reviews[ldelete]);
-                movie.markModified('reviews');    // ***************************
 
-
-
-
-                movie.markModified('reviews');    // ***************************
                 movie.save(function(err) {
                     if(err) {
                         return res.status(401).json(err);
                     }
+                    console.log("999");
                     return res.json("All clear!");
                 });
             }

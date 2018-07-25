@@ -1,3 +1,46 @@
-<p>
-  mnew works!
-</p>
+<div id="wrap">
+    <h3>Submit a Movie and Your Review </h3>
+
+    <ul>
+        <li class="make-red" *ngFor="let e of errors">             
+            {{ e }}
+        </li>
+    </ul>
+
+    <form (submit)="triggerMovieReviewCreate()">
+
+        <label for="title">Movie Title:</label>
+        <input type="text" name="title" required minlength="3" #title="ngModel" [(ngModel)]="movieToCreate.title" />
+        <span class="make-red"  *ngIf="!title.valid && (title.dirty || title.touched)">The Movie Title must contain at least 3 characters.</span>
+
+        <br>
+
+        <label for="reviewer">Your Name:</label>
+        <input type="text" name="reviewer" required minlength="3" #reviewer="ngModel" [(ngModel)]="reviewToCreate.reviewer" />
+        <!-- <span style="color: red;" *ngIf="!reviewer.valid && (reviewer.dirty || reviewer.touched)">The Movie Reviewer must contain at least 3 characters.</span> -->
+        <span class="make-red" *ngIf="!reviewer.valid && (reviewer.dirty || reviewer.touched)">The Movie Reviewer must contain at least 3 characters.</span>
+
+        <br>
+
+        <label for="reviewToCreate.rating">Stars:</label>
+        <select class="select" name="reviewToCreate.rating" [(ngModel)]="reviewToCreate.rating">
+            <option selected="selected" value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+        </select>
+
+        <br>
+
+        <label for="review">Your Review: <span style="color: red;" *ngIf="!review.valid && (review.dirty || review.touched)">The Movie Review must contain at least 3 characters.</span> </label>
+        <textarea class="form-control" rows="5" name="review"  required minlength="3" #review="ngModel" [(ngModel)]="reviewToCreate.review" value=""></textarea>
+
+        <br>
+        
+        <button type="submit" class="btn-primary" [disabled]="!title.valid || !review.valid || !reviewer.valid" >Submit</button> 
+        <button type="button" class="btn-dark" (click)="cancelCreate()">Cancel</button> 
+
+    </form>
+
+</div>

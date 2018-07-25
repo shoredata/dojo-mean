@@ -12,7 +12,7 @@ const MovieSchema = new mongoose.Schema(
         },
         rating: {
             type: String,
-            default: "",
+            default: "0",
         },
         reviews: [],
         updated_at: { type: Date, default: Date.now },

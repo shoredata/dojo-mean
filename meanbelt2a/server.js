@@ -26,6 +26,6 @@ require('./server/config/routes')(app) // processes all express routes
 
 // LISTENER -----------------------------------------------------
 app.listen(8000, function() {
-    console.log(Array(50).join("*") + "\n[ MEAN BELT 2: MOVIES ]  API Server Listening on Port 8000 ... " + utils.formatDate(new Date()));
+    console.log(Array(50).join("*") + "\n[ MEAN BELT 2 A: MOVIES ]  API Server Listening on Port 8000 ... " + utils.formatDate(new Date()));
 });
 
