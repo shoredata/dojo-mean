@@ -1,28 +1,36 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ItemsComponent } from './items/items.component';
-import { ItemComponent } from './item/item.component';
-import { IeditComponent } from './iedit/iedit.component';
-import { InewComponent } from './inew/inew.component';
+
+import { DataService } from './data.service';
+
+import { MoviesComponent } from './movies/movies.component';
+import { MovieComponent } from './movie/movie.component';
+import { MnewComponent } from './mnew/mnew.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { RnewComponent } from './rnew/rnew.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ItemsComponent,
-    ItemComponent,
-    IeditComponent,
-    InewComponent,
-    PagenotfoundComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        MoviesComponent,
+        MovieComponent,
+        MnewComponent,
+        PagenotfoundComponent,
+        RnewComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+    ],
+    providers: [DataService],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
+

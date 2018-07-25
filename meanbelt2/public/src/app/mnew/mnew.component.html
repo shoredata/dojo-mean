@@ -1,0 +1,60 @@
+<div id="wrap">
+    Submit a Movie and Your Review <br>
+
+    <ul>
+        <li class="make-red" *ngFor="let e of errors">             
+            {{ e }}
+        </li>
+    </ul>
+    
+    <form (submit)="triggerMovieReviewCreate()">
+
+        <label for="movieToCreate.title">Movie Title:</label>
+        <input type="text" name="movieToCreate.title" [(ngModel)]="movieToCreate.title" />
+
+        <label for="reviewToCreate.reviewer">Your Name:</label>
+        <input type="text" name="reviewToCreate.reviewer" [(ngModel)]="reviewToCreate.reviewer" />
+
+        <label for="reviewToCreate.rating">Stars:</label>
+        <!-- <input type="text" name="review.rating" [(ngModel)]="review.rating" /> -->
+        <select class="select" name="reviewToCreate.rating" [(ngModel)]="reviewToCreate.rating">
+            <option selected="selected" value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+        </select>
+
+        <!-- <label for="review.review">Your Review:</label>
+        <input type="text" name="review.review" [(ngModel)]="review.review" /> -->
+
+        <label for="reviewToCreate.review">Your Review:</label>
+        <textarea class="form-control" rows="5" name="reviewToCreate.review" [(ngModel)]="reviewToCreate.review" value=""></textarea>
+
+        
+        <input type="submit" value="Submit" />
+        <button (click)="cancelCreate()">Cancel</button> 
+
+        <p> {{ movieToCreate | json }} </p>
+        <p> {{ reviewToCreate | json }} </p>
+
+    </form>
+
+
+    <label for="reviewer">Reviewer: (Test, FEV Only)</label>
+    <input 
+        type="text" 
+        name="reviewer"
+        required 
+        minlength="3" 
+        [(ngModel)]="reviewer"
+        #reviewer="ngModel"
+    />
+    <div class="make-red" *ngIf="reviewer.errors">Errors: {{ reviewer.errors | json }}</div>
+    <div class="make-green" *ngIf="reviewer.valid">Valid: {{ reviewer.valid | json }}</div>
+
+</div>
+
+
+
+<router-outlet></router-outlet>

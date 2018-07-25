@@ -1,0 +1,28 @@
+<h4>{{thisMovie.title}}</h4>
+
+<button (click)="deleteMovie()"> DELETE MOVIE </button> 
+    
+<table id="reviews" class="table">
+    <tr>
+        <th>Reviewer</th>
+        <th>Stars</th>
+        <th>Review</th>
+        <th>Action</th>
+    </tr>
+    <tr *ngFor="let r of movies.reviews">
+        <td>{{r.reviewer}}</td>
+        <!-- <td>{{movies.reviews[r].reviewer}}</td>
+        <td>{{movies.reviews[r].rating}}</td>
+        <td>{{movies.reviews[r].review}}</td>
+        <td>
+            <a [routerLink] = "['/movies', m._id, '/reviews', movies.reviews[r]._id']"> DELETE </a>              
+        </td> -->
+    </tr>
+</table>
+
+
+
+<router-outlet></router-outlet>
+
+
+
