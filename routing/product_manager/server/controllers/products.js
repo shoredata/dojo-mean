@@ -13,8 +13,8 @@ module.exports = {
         console.log(" getList: "); //
         Product.find({}, function(err,data) {
             if(err)
-                return res.send(err);
-            return res.json(data);
+                return res.status(400).json(err); //bad request
+            return res.status(200).json(data);    //ok
         });
     },
 
@@ -23,7 +23,7 @@ module.exports = {
     createOne: function(req, res) {
         console.log(" createOne: ", req.body); 
         Product.create(req.body)
-        .then(data => { console.log(" createOne => data: ", data); return res.json(data); } )
+        .then(data => { console.log(" createOne => data: ", data); return res.status(201).json(data); } )
         .catch(errs =>  { console.log(" createOne => errs: ", errs); return res.status(500).json(errs); } )
     },
 
@@ -35,7 +35,7 @@ module.exports = {
             if(err) {
                 return res.status(401).json(err);
             }
-            return res.json(data);
+            return res.status(200).json(data);
         })
     },
 
@@ -47,7 +47,7 @@ module.exports = {
             if(err) {
                 return res.status(401).json(err);
             }
-            return res.json("All clear!")
+            return res.status(200).json("All clear!")
         })
     },
 
@@ -61,7 +61,7 @@ module.exports = {
 			if (!product) {
 				return res.sendStatus(404);
 			}
-			return res.json(product);
+			return res.status(201).json(product);
 		})
 		.catch(err => {
             return res.status(401).json(err);

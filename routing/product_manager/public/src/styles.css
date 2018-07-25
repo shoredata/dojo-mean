@@ -1,1 +1,141 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+/* 
+h1 {
+    margin: 0px;
+    padding: 0px;
+}
+
+button{
+    margin-left: 20px;
+} */
+
+.make-red {
+    color: red;
+}
+
+#wrap {
+    margin-top: 10px;
+    padding: 10px; 
+    border: 1px solid black;
+    border-radius: 5px;
+
+    /* overflow: auto;
+    width: auto;
+    height: auto;
+    display: inline-block;     */
+}
+
+#warp {
+    margin: 10px;
+    padding: 10px;
+
+    /* overflow: auto;
+    width: auto;
+    height: auto;
+    display: inline-block;     */
+}
+
+
+button {
+    margin-right: 5px;
+}
+
+.ib {
+    display: inline-block;
+}
+
+.cent {
+    text-align: center;
+}
+
+/*   
+a, button {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px;
+    height: 25px;
+    width: auto;
+    background-color: lightgrey;
+    border: 1px solid darkblue;
+    border-radius: 5px;
+    text-decoration: none;  
+    color: black;
+}
+
+
+
+.col1 {
+    display: inline-block;
+    width: 80px;
+}
+.col2 {
+    display: inline-block;
+    width: 200px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.move-right {
+    margin-left:130px;
+}
+ */
+
+
+
+
+
+/* #products {
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#products td, #products th, #products form {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#products tr:nth-child(even){background-color: #f2f2f2;}
+
+#products tr:hover {background-color: #ddd;}
+
+#products th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: rgb(66, 66, 71);
+    color: white;
+} */
+ 
+
+/* div.gallery {
+    border: 1px solid rgba(0, 0, 0, 0.75);
+} */
+
+/* 
+div.gallery {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 180px;
+} */
+
+/* div.gallery:hover {
+    border: 1px solid rgba(0, 0, 0, 1);
+} */
+
+/* div.gallery img {
+    width: 100%;
+    height: auto;
+} */
+
+div.thumbnail {
+    border: 1px solid rgba(0, 0, 0, 1);
+    padding: 1px;
+    margin: 1px;
+    display: inline-block;
+}
+div.desc {
+    padding: 15px;
+    text-align: center;
+}

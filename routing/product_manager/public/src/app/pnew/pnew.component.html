@@ -1,3 +1,32 @@
-<p>
-  pnew works!
-</p>
+<div id="wrap" *ngIf="productToCreate">
+    <h3> Create a New Product </h3>
+
+    <ul>
+        <li class="make-red" *ngFor="let e of errors">             
+            {{ e }}
+        </li>
+    </ul>
+    
+    <form (submit)="triggerCreate()">
+
+        <label for="title">Title:</label>
+        <input type="text" name="title" required minlength=4 #title="ngModel" [(ngModel)]="productToCreate.title" />
+        <span class="make-red" *ngIf="!title.valid && (title.dirty || title.touched)">The Title must contain at least 4 characters.</span>
+        <br>
+
+        <label for="price">Price:</label>
+        <input type="text" name="price" required #price="ngModel" [(ngModel)]="productToCreate.price" (ngModelChange)="onPriceChange($event)"/>
+        <span class="make-red" *ngIf="!price.valid && (price.dirty || price.touched)">The Price must not be blank.</span>
+        <br>
+
+        <label for="title">Image:</label>
+        <input type="text" name="image" #image="ngModel" [(ngModel)]="productToCreate.image" />
+        <br>
+
+        
+        <button type="submit" class="btn-primary" [disabled]="!title.valid || !price.valid">Create</button> 
+        <button type="button" class="btn-dark" [routerLink] = "['/products']"> Cancel </button>
+
+    </form>
+    
+</div>

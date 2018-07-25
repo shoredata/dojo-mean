@@ -1,3 +1,18 @@
-<p>
-  products works!
-</p>
+<div id="wrap">
+    <h3>Products List</h3>
+
+    <div id="gallery" class="ib" *ngFor="let p of products">
+
+        <div class="thumbnail"  style="width:180px">
+            <img src="{{p.image}}" alt="{{p.title}}" style="width:177px">
+            <div class="desc">
+                {{p.title}}<br>
+                {{p.price}}<br>
+                <button class="ib btn-outline-primary" [routerLink] = "['/products/edit', p._id]"> Edit </button>  
+                <button class="ib btn-outline-danger" (click)="delete(p)"> Delete </button>  
+            </div>
+        </div>
+
+    </div>
+
+</div>
