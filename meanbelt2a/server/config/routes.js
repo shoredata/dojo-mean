@@ -12,7 +12,7 @@ module.exports = api => {
 
 	api.route('/api/movies').get(movies.getMovies);             //list
 	api.route('/api/movies/new').post(movies.createOneMovie);   //C v2
-	api.route('/api/movies/:id/reviews/:rid').delete(movies.deleteReview);    //D
+	api.route('/api/movies/:id/reviews/:rid').delete(movies.deleteReview);    //D review
 	api.route('/api/movies/:id').get(movies.getMovie);          //R 
 	api.route('/api/movies/:id').post(movies.addReview);        //U review
 	api.route('/api/movies/:id').delete(movies.deleteMovie);    //D

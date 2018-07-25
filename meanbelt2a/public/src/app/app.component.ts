@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { DataService } from './data.service';
-// import { MoviesComponent } from './movies/movies.component';
 
 @Component({
     selector: 'app-root',

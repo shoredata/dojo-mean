@@ -17,7 +17,6 @@
 
         <label for="reviewer">Your Name:</label>
         <input type="text" name="reviewer" required minlength="3" #reviewer="ngModel" [(ngModel)]="reviewToCreate.reviewer" />
-        <!-- <span style="color: red;" *ngIf="!reviewer.valid && (reviewer.dirty || reviewer.touched)">The Movie Reviewer must contain at least 3 characters.</span> -->
         <span class="make-red" *ngIf="!reviewer.valid && (reviewer.dirty || reviewer.touched)">The Movie Reviewer must contain at least 3 characters.</span>
 
         <br>

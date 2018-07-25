@@ -52,7 +52,6 @@ export class RnewComponent implements OnInit {
         let observable = this._dataService.postReviewOneMovie(this.myId, this.reviewToCreate);
         observable.subscribe(
             review => {
-                // console.log("Review Created", review);
                 this._router.navigate(['/movies', this.myId]);
                 return;
             },

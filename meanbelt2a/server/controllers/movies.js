@@ -22,7 +22,7 @@ module.exports = {
 
     // C
     createOneMovie: function(req, res) {
-        console.log(" createOneMovie: ", req.body); // ok, need new error parser
+        console.log(" createOneMovie: ", req.body); 
         Movie.create(req.body)
         .then(data => { console.log(" createOneMovie => data: ", data); return res.json(data); } )
         .catch(errs =>  { console.log(" createOneMovie => errs: ", errs); return res.status(500).json(errs); } )
@@ -34,7 +34,6 @@ module.exports = {
         console.log(" getMovie: ", req.params); //
         Movie.findOne({_id: req.params.id}, (err, data) => {
             if(err) {
-                // console.log("There was an error getting: \n", err)
                 return res.status(401).json(err);
             }
             return res.json(data);
@@ -62,7 +61,7 @@ module.exports = {
                 return res.status(401).json(err);
             }
             else if (movie) {
-                console.log("Adding Review to Movie: ", movie.id);
+                // console.log("Adding Review to Movie: ", movie.id);
 
                 const data = Object.assign(req.body, { movie: req.params }) || {};                
 
@@ -74,26 +73,26 @@ module.exports = {
 
                 Review.create(req.body)
                 .then(newReview => { 
-                    console.log(" Review.create => data: ", movie); 
+                    // console.log(" Review.create => data: ", movie); 
 
                     let srating = req.body.rating;
 
                     if (movie.reviews.length>0)
                     {
                         let sum = parseFloat(req.body.rating);
-                        console.log("sum", sum);
+                        // console.log("sum", sum);
                         let count = 1;
                         for (var idx = 0; idx < movie.reviews.length; idx++) {
-                            console.log("AA:" , movie.reviews[idx].rating);
+                            // console.log("AA:" , movie.reviews[idx].rating);
                             sum += movie.reviews[idx].rating;
                             count++;
-                            console.log("BB: sum, count", sum, count);
+                            // console.log("BB: sum, count", sum, count);
                         }
                         let rating = sum/count;
-                        console.log("rating", rating);
+                        // console.log("rating", rating);
                         srating = rating.toFixed(1).toString();
                     }
-                    console.log("srating", srating);
+                    // console.log("srating", srating);
                     movie.rating = srating;
                     movie.markModified('rating');     // ***************************
                     movie.reviews.push(newReview);
@@ -103,7 +102,7 @@ module.exports = {
 
                         Movie.findOne({_id: req.params.id}, (err, confirm_review) => {
                             if (confirm_review) {
-                                console.log("Review added!");
+                                // console.log("Review added!");
                                 return res.json(confirm_review);
                             }
                             else{
@@ -132,7 +131,7 @@ module.exports = {
                 return res.status(401).json(err);
             }
             else if (movie) {
-                console.log("Deleting Review from Movie: ", movie.id);
+                // console.log("Deleting Review from Movie: ", movie.id);
 
                 let srating = "0";
                 let sum = 0;
@@ -140,9 +139,9 @@ module.exports = {
                 let ldelete = -1;
 
                 for (var idx = 0; idx< movie.reviews.length; idx++) {
-                    console.log("AAA: ", idx, movie.reviews[idx], req.params.rid);
+                    // console.log("AAA: ", idx, movie.reviews[idx], req.params.rid);
                     if (movie.reviews[idx]._id == req.params.rid) {
-                        console.log("DELETING: ", idx, movie.reviews[idx], req.params.rid);
+                        // console.log("DELETING: ", idx, movie.reviews[idx], req.params.rid);
                         ldelete = idx;
                     }
                     else {
@@ -152,20 +151,20 @@ module.exports = {
                 }
 
                 if (ldelete>-1) {
-                    console.log("DO IT: ", ldelete, movie.reviews[ldelete], req.params.rid);
+                    // console.log("DO IT: ", ldelete, movie.reviews[ldelete], req.params.rid);
                     // movie.reviews.slice(ldelete, 1);
                     movie.reviews.pull(movie.reviews[ldelete]);
                     movie.markModified('reviews');    // ***************************
-                    console.log(" --> AFTER: ", movie.reviews);
+                    // console.log(" --> AFTER: ", movie.reviews);
                 }
 
                 if (count>0) {
                     let rating = sum/count;
-                    console.log("rating", rating);
+                    // console.log("rating", rating);
                     srating = rating.toFixed(1).toString();
                 }
 
-                console.log("srating", srating);
+                // console.log("srating", srating);
                 movie.rating = srating;
                 movie.markModified('rating');     // ***************************
 
@@ -175,7 +174,7 @@ module.exports = {
                     if(err) {
                         return res.status(401).json(err);
                     }
-                    console.log("999");
+                    // console.log("999");
                     return res.json("All clear!");
                 });
             }

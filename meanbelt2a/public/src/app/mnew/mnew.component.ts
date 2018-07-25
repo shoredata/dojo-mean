@@ -14,8 +14,6 @@ export class MnewComponent implements OnInit {
     @Output() aMovieCreatedEmitter = new EventEmitter();
     @Output() aCloseNewMovieEmmitter = new EventEmitter();
 
-    //newRating: any;
-
     errors = [];
 
     constructor(
@@ -39,13 +37,10 @@ export class MnewComponent implements OnInit {
         let observable = this._dataService.postOneMovie(this.movieToCreate);
         observable.subscribe(
             movie => {
-                // console.log("Movie Created", movie);
                 let mynewmovieid = movie["_id"];
-                // console.log("Creating Review for: ", mynewmovieid);
                 let observable = this._dataService.postReviewOneMovie(mynewmovieid, this.reviewToCreate);
                 observable.subscribe(
                     review => {
-                        // console.log("Review Created", review);
                         this.aMovieCreatedEmitter.emit();
                         this.aCloseNewMovieEmmitter.emit();
                         return;
@@ -65,8 +60,6 @@ export class MnewComponent implements OnInit {
         )
     }
 
-
-
     unpackErrors(error) {
         console.log("unpackErrors");
         let errs = [];
@@ -80,7 +73,6 @@ export class MnewComponent implements OnInit {
         }
         return errs;
     }
-
 
 
 }
