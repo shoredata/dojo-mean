@@ -3,7 +3,14 @@
 
 <div *ngIf="rest">
 
+    Name: {{rest.name}} <br>
+    Cuisine: {{rest.cuisine}} <br>
+    Description: {{rest.description}} <br>
+
+    <div *ngIf="rest.foods">
+
     <div class="ib" id="foods" style="width: 50%; height: 50%; float:left;">
+        Foods: {{rest.foods.length}}
         <table class="table">
             <tr>
                 <th>Name</th>
@@ -20,7 +27,13 @@
         </table>
     </div>
 
+    </div>
+
+
+    <div *ngIf="rest.reviews">
+
     <div class="ib" id="reviews" style="width: 50%; height: 50%; float:right;">
+        Reviews: {{rest.reviews.length}}
         <table class="table">
             <tr>
                 <th>Name</th>
@@ -33,6 +46,8 @@
                 <td>{{f.description}}</td>
             </tr>
         </table>
+    </div>
+    
     </div>
 
 </div>

@@ -15,7 +15,7 @@
         <td>
             <button class="btn-success" [routerLink] = "['/restaurants', r._id]"> Reviews </button>
             <button class="btn-primary" [routerLink] = "['/restaurants', r._id, 'items']"> Add Food/Review </button>
-            <button class="btn-danger" (click)="delete(r)"> Delete </button>
+            <button class="btn-danger" (click)="delete(r)" *ngIf="r.show==true"> Delete </button>
         </td>
     </tr>
 </table>

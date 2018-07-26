@@ -11,6 +11,7 @@ import { DataService } from '../data.service';
 export class RlistComponent implements OnInit {
 
     restaurants = [];
+    show = [];
 
     constructor(
         private _dataService: DataService,
@@ -21,6 +22,7 @@ export class RlistComponent implements OnInit {
 
     ngOnInit(){
         this.restaurants = [];
+        this.show = [];
         this.get();
     }
 
@@ -32,6 +34,20 @@ export class RlistComponent implements OnInit {
             //to sort
             let arr = <Array<any>>data;
             arr.sort(this.sortFunction);
+
+            //this is stupid, but we're building an array to show the delete button if the 
+            // created_at is less than 60000 ms from now ...
+            // meaning it was created <= 1 minute ago.
+            for (var idx=0; idx<arr.length; idx++) {
+                var mylocal = new Date(arr[idx].created_at).getTime();
+                var doshow = false;
+                if (Date.now() - mylocal <= 60000 ){
+                    doshow = true;
+                }
+                arr[idx]['show'] = doshow;
+            }
+
+            //simply sorted shoudl comment out above ...
             this.restaurants = arr;
 
             //unsorted
@@ -47,7 +63,8 @@ export class RlistComponent implements OnInit {
             return 0;
         }
         else {
-            return (a1<b1) ? -1 : 1;
+            //created_at > = newest first ....
+            return (a1>b1) ? -1 : 1;
         }
     }    
 

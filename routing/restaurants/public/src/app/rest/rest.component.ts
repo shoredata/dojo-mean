@@ -21,23 +21,21 @@ export class RestComponent implements OnInit {
         private _route: ActivatedRoute,
         private _router: Router,
         private _location: Location,
-    ) { }
+    ) { 
+    }
 
     ngOnInit() { 
         this.id = undefined;
-        this.rest = undefined;
+        this.rest = {};
         this._route.params.subscribe((params: Params) => {
             this.id = params['id'];
-            this.getRestaurant();
-        });
-    }
 
-    getRestaurant() {
-        let observable = this._dataService.getOne(this.id);
-        observable.subscribe(data => {
-            // console.log("Have Movie: id, data:: ", this.myId, data);
-            this.rest = data;
-        })
+            let observable = this._dataService.getOne(this.id);
+            observable.subscribe(data => {
+                // console.log("Have Movie: id, data:: ", this.myId, data);
+                this.rest = data;
+            })
+        });
     }
 
 
