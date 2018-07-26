@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.make-red {
+    color: red;
+}
+
+.ib {
+    display: inline-block;
+}
+
+#wrap {
+    margin: 10px;
+    padding: 10px;
+}
+
+button{
+    margin-left: 20px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.doborder {
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+}

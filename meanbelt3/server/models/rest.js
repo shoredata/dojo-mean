@@ -2,6 +2,7 @@
 // https://getstream.io/blog/building-a-node-js-powered-api-with-express-mongoose-mongodb/
 'use strict';
 const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
 const RestaurantSchema = new mongoose.Schema(
     {
@@ -22,6 +23,7 @@ const RestaurantSchema = new mongoose.Schema(
         },
     { collection: 'restaurants' },
 );
+RestaurantSchema.plugin(uniqueValidator, { message: 'ERROR... expected {PATH} to be unique.' });
 
 module.exports = RestaurantSchema;
 module.exports = exports = mongoose.model('Restaurant', RestaurantSchema);

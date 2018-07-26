@@ -1,3 +1,28 @@
-<p>
-  rnew works!
-</p>
+<h3>Register a Restaurant</h3>
+
+<div class="doborder">
+
+<ul>
+    <li class="make-red" *ngFor="let e of errors">             
+        {{ e }}
+    </li>
+</ul>
+
+<form (submit)="triggerCreate()">
+
+    <label for="name">Restaurant Name:</label>
+    <input type="text" name="name" required minlength=3 #name="ngModel" [(ngModel)]="rest.name" />
+    <span class="make-red" *ngIf="!name.valid && (name.dirty || name.touched)">The Name must contain at least 3 characters.</span>
+    <br>
+
+    <label for="cuisine">Restaurant Cuisine:</label>
+    <input type="text" name="cuisine" required minlength=3  #cuisine="ngModel" [(ngModel)]="rest.cuisine" />
+    <span class="make-red" *ngIf="!cuisine.valid && (cuisine.dirty || cuisine.touched)">The Cuisine must contain at least 3 characters.</span>
+    <br>
+    
+    <button type="button" class="btn-dark" [routerLink] = "['/restaurants']"> Cancel </button>
+    <button type="submit" class="btn-primary" [disabled]="!name.valid || !cuisine.valid">Register</button> 
+
+</form>
+
+</div>

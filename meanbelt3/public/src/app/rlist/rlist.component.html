@@ -1,3 +1,31 @@
-<p>
-  rlist works!
-</p>
+
+<app-redit *ngIf="editRest" 
+    [rest]="editRest" 
+    (aEditedEmitter)="restModified()" 
+    (aCloseEmmitter)="restClosed()" >
+</app-redit> 
+
+<div class="doborder" *ngIf="!editRest"> 
+
+<button class="btn-primary" [routerLink] = "['/restaurants/new']"> New Restaurant </button>
+
+<table id="items" class="table table-hover table-light table-bordered">
+    <tr class="thead-dark">
+        <th>Restaurant</th>
+        <th>Cuisine</th>
+        <th>Reviews</th>
+        <th>Actions</th>
+    </tr>
+    <tr *ngFor="let r of restaurants">
+        <td>{{r.name}}</td>
+        <td>{{r.cuisine}}</td>
+        <td>{{r.reviews.length}}</td>
+        <td>
+            <button class="btn-success" [routerLink] = "['/restaurants', r._id]"> Reviews </button>
+            <button class="btn-primary" (click)="edit(r)"> Update </button>
+            <button class="btn-danger" (click)="delete(r)" *ngIf="r.show==true"> Delete </button>
+            <button class="btn-outline-danger" (click)="delete(r)" *ngIf="r.show==false" disabled> Delete </button>
+        </td>
+    </tr>
+</table>
+</div>

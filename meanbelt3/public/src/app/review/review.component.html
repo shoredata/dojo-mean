@@ -1,3 +1,46 @@
-<p>
-  review works!
-</p>
+<div *ngIf="rest">
+   
+    <h3>Add Review for {{rest.name}}:</h3>
+
+    <div class="doborder">
+
+    <div class="make-red" *ngFor="let e of errors">             
+        <span>{{ e }}</span>
+    </div>
+
+
+    <form (submit)="triggerCreate()">
+
+        <label for="name">Your Name:</label>
+        <input type="text" name="name" required minlength="3" #name="ngModel" [(ngModel)]="revw.name" />
+        <span class="make-red" *ngIf="!name.valid && (name.dirty || name.touched)">The Name must contain at least 3 characters.</span>
+        <br>
+
+        <label for="rating">Stars:</label>
+        <select class="select" name="rating" [(ngModel)]="revw.rating">
+            <option selected="selected" value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+        </select>
+        <br>
+
+        <label for="review">Your Review:</label>
+        <input type="text" name="review" required minlength="3" #review="ngModel" [(ngModel)]="revw.review" />
+        <span class="make-red" *ngIf="!review.valid && (review.dirty || review.touched)">The Review must contain at least 3 characters.</span>
+        <br>
+
+        <button type="submit" class="btn-primary" [disabled]="!review.valid || !name.valid" >Submit</button> 
+        <button type="button" class="btn-dark" (click)="cancelCreate()">Cancel</button>
+
+        
+    </form>
+
+
+</div>
+
+</div>
+
+
+
