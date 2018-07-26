@@ -1,0 +1,90 @@
+<h3>Add Foods & descriptions</h3>
+<button class="btn-outline-success" [routerLink] = "['/restaurants']"> Home </button>
+
+<div *ngIf="rest">
+
+<div class="make-red" *ngFor="let e of errors">             
+    <span>{{ e }}</span>
+</div>
+
+<div class="ib" style="width: 50%; height: 50%; float:left;">
+    <h4>Add Food for {{rest.name}}:</h4>
+    
+    <form (submit)="triggerFoodCreate()">
+
+        <label for="name">Name:</label>
+        <input type="text" name="name" required minlength="3" #name="ngModel" [(ngModel)]="food.name" />
+        <br>
+
+        <label for="rating">Rating:</label>
+        <select class="select" name="rating" [(ngModel)]="food.rating">
+            <option selected="selected" value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+        </select>
+        <br>
+
+        <label for="description">Description:</label>
+        <input type="text" name="description" required minlength="3" #description="ngModel" [(ngModel)]="food.description" />
+        <br>
+        
+        <label for="price">Price:</label>
+        <input type="text" name="price" required #price="ngModel" [(ngModel)]="food.price" (ngModelChange)="onPriceChange($event)"/>
+        <br>
+
+        <button type="submit" class="btn-primary" [disabled]="!description.valid || !name.valid" >Submit</button> 
+        <button type="button" class="btn-dark" (click)="cancelCreate()">Cancel</button>
+
+        <br>
+        <span class="make-red" *ngIf="!name.valid && (name.dirty || name.touched)">The Name must contain at least 3 characters.</span>
+        <br>
+        <span class="make-red" *ngIf="!description.valid && (description.dirty || description.touched)">The Description must contain at least 3 characters.</span>
+        <br>
+        <span class="make-red" *ngIf="!price.valid && (price.dirty || price.touched)">The Price must not be blank.</span>
+        
+    </form>
+
+
+</div>
+
+<div class="ib" style="width: 50%; height: 50%; float:right;">
+
+    <h4>Add Review for {{rest.name}}:</h4>
+    
+    <form (submit)="triggerReviewCreate()">
+
+        <label for="name">Name:</label>
+        <input type="text" name="name" required minlength="3" #name="ngModel" [(ngModel)]="review.name" />
+        <br>
+
+        <label for="rating">Rating:</label>
+        <select class="select" name="rating" [(ngModel)]="review.rating">
+            <option selected="selected" value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+        </select>
+        <br>
+
+        <label for="description">Description:</label>
+        <input type="text" name="description" required minlength="3" #description="ngModel" [(ngModel)]="review.description" />
+        <br>
+
+        <button type="submit" class="btn-primary" [disabled]="!description.valid || !name.valid" >Submit</button> 
+        <button type="button" class="btn-dark" (click)="cancelCreate()">Cancel</button>
+
+        <br>
+        <span class="make-red" *ngIf="!name.valid && (name.dirty || name.touched)">The Name must contain at least 3 characters.</span>
+        <br>
+        <span class="make-red" *ngIf="!description.valid && (description.dirty || description.touched)">The Description must contain at least 3 characters.</span>
+        
+    </form>
+
+
+</div>
+
+
+

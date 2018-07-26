@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.make-red {
+    color: red;
+}
+
+.ib {
+    display: inline-block;
+}
+
+#foods {
+    border: 2px sold black;
+    border-radius: 5px;
+}
+
+#reviews {
+    border: 2px sold black;
+    border-radius: 5px;
+}

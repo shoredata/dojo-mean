@@ -1,0 +1,41 @@
+<h3>Restaurant Details</h3>
+<button class="btn-outline-success" [routerLink] = "['/restaurants']"> Home </button>
+
+<div *ngIf="rest">
+
+    <div class="ib" id="foods" style="width: 50%; height: 50%; float:left;">
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Rate</th>
+                <th>Price</th>
+                <th>Review</th>
+            </tr>
+            <tr *ngFor="let f of rest.foods">
+                <td>{{f.name}}</td>
+                <td>{{f.rating}}</td>
+                <td>{{f.price}}</td>
+                <td>{{f.description}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="ib" id="reviews" style="width: 50%; height: 50%; float:right;">
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Rate</th>
+                <th>Review</th>
+            </tr>
+            <tr *ngFor="let f of rest.reviews">
+                <td>{{f.name}}</td>
+                <td>{{f.rating}}</td>
+                <td>{{f.description}}</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+    
+    
+    

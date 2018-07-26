@@ -1,0 +1,21 @@
+<h3>Restaurants</h3>
+<button class="btn-outline-primary" [routerLink] = "['/restaurants/new']"> New Restaurant </button>
+
+<table id="items" class="table">
+    <tr>
+        <th>Name</th>
+        <th>Cuisine</th>
+        <th>Food:Reviews</th>
+        <th>Actions</th>
+    </tr>
+    <tr *ngFor="let r of restaurants">
+        <td>{{r.name}}</td>
+        <td>{{r.cuisine}}</td>
+        <td>{{r.foods.length}} : {{r.reviews.length}}</td>
+        <td>
+            <button class="btn-success" [routerLink] = "['/restaurants', r._id]"> Reviews </button>
+            <button class="btn-primary" [routerLink] = "['/restaurants', r._id, 'items']"> Add Food/Review </button>
+            <button class="btn-danger" (click)="delete(r)"> Delete </button>
+        </td>
+    </tr>
+</table>
